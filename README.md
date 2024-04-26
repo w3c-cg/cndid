@@ -1,3 +1,5 @@
+# CG draft report at: 
+https://w3c.github.io/cndid
 
 # Specification 'cndid'
 
