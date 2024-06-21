@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Chinese DID & VC Community Report</title>
+    <title>IIFAA 分布式可信认证技术规范</title>
     <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
     <script class='remove'>
       // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
       var respecConfig = {
         specStatus: "CG-DRAFT",
-        shortName: "cndid",
+        shortName: "iifaa-did",
         editors: [{
           name: "null"
         }],
@@ -18,8 +18,8 @@
   </head>
   <body>
     <section id="abstract">
-      <p>
-        This specification does neat stuff.
+      <p>本文件规定了IIFAA分布式可信认证参考模型、技术架构和功能、业务流程、安全要求和个人信息保护要求。</p>
+      <p>本文件适用于IIFAA分布式可信认证研发设计、部署应用和测试认证等相关活动。
       </p>
     </section>
     <section id="sotd">
@@ -30,10 +30,38 @@
 
     <section id="introduction">
       <h2>Introduction</h2>
-      <p>
-        See <a href="https://github.com/w3c/respec/wiki/User's-Guide">ReSpec's user guide</a>
-        for how toget started!
+      <p>本文件规定了IIFAA分布式可信认证参考模型、技术架构和功能、业务流程、安全要求和个人信息保护要求。</p>
+      <p>本文件适用于IIFAA分布式可信认证研发设计、部署应用和测试认证等相关活动。
       </p>
+    </section>
+    <section>
+      <h2>总体框架</h2>
+      <section>
+        <h3>参考模型</h3>
+        <p>IIFAA分布式可信认证服务参考模型如图1所示，有四个关键角色：凭证颁发方、业务服务提供方、
+          身份服务提供方、DID持有方，两类关键数据：可验证凭证、可验证表达，一个关键基础设施：IIFAA分
+          布式可信认证基础设施（云链）。</p>
+          <div><img src=""/><p>图 1 参考模型</p></div>
+          <p>IIFAA分布式可信认证服务具体包括：</p>
+          <ul>
+            <li>
+              分布式可信认证体系中的机构或者个人都需要通过身份服务提供方注册 DID 并将含身份公钥的分布式身份文档上链存证；
+            </li>
+            <li>
+              经过用户主动申请，凭证颁发方为用户签发可验证凭证到用户端侧加密存储；
+            </li>
+            <li>
+              当用户需要在特定业务场景出示相关凭证时，经由用户授权后在用户端侧将可验证表达组装签发成可验证表达并提交给业务服务提供方；
+            </li>
+            <li>
+              业务服务提供方通过基础设施获取用户和凭证颁发方的身份公钥，依次进行可验证表达的用户授权验证和凭证颁发方身份验证，验证通过后进一步判断声明内容满足业务场景要求后即可提供场景服务。
+            </li>
+          </ul>
+      </section>
+      <section>
+        <h3>凭证颁发方</h3>
+        <p>凭证颁发方要求如下：</p>
+      </section>
     </section>
   </body>
 </html>
