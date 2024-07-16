@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IIFAA 分布式可信认证技术规范</title>
+    <title>IIFAA Decentralized Trusted Authentication Technical Specification - Part 1: General Requirements</title>
     <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
     <script class='remove'>
       // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
@@ -18,8 +18,10 @@
   </head>
   <body>
     <section id="abstract">
-      <p>本文件规定了IIFAA分布式可信认证参考模型、技术架构和功能、业务流程、安全要求和个人信息保护要求。</p>
-      <p>本文件适用于IIFAA分布式可信认证研发设计、部署应用和测试认证等相关活动。
+      <p>This document specifies the IIFAA decentralized trusted authentication reference model, technical architecture and
+      functionalities, service procedures, security requirements, and personal information protection requirements.</p>
+      <p>It is applicable to the development, design, deployment, application, and testing certification and other related
+      activities of IIFAA decentralized trusted authentication.
       </p>
     </section>
     <section id="sotd">
@@ -30,37 +32,446 @@
 
     <section id="introduction">
       <h2>Introduction</h2>
-      <p>本文件规定了IIFAA分布式可信认证参考模型、技术架构和功能、业务流程、安全要求和个人信息保护要求。</p>
-      <p>本文件适用于IIFAA分布式可信认证研发设计、部署应用和测试认证等相关活动。
+      <p>This document specifies the IIFAA decentralized trusted authentication reference model, technical architecture and
+        functionalities, service procedures, security requirements, and personal information protection requirements.</p>
+      <p>It is applicable to the development, design, deployment, application, and testing certification and other related
+        activities of IIFAA decentralized trusted authentication.
       </p>
     </section>
     <section>
-      <h2>总体框架</h2>
+      <h2>General Framework</h2>
       <section>
-        <h3>参考模型</h3>
-        <p>IIFAA分布式可信认证服务参考模型如图1所示，有四个关键角色：凭证颁发方、业务服务提供方、
-          身份服务提供方、DID持有方，两类关键数据：可验证凭证、可验证表达，一个关键基础设施：IIFAA分
-          布式可信认证基础设施（云链）。</p>
-          <div><img src=""/><p>图 1 参考模型</p></div>
-          <p>IIFAA分布式可信认证服务具体包括：</p>
+        <h3>Reference Model</h3>
+        <p>The IIFAA decentralized trusted authentication service reference model is depicted in Figure 1. It comprises four
+        pivotal roles: issuer, service provider, identity provider, and DID holder; two key data types: VCs and VPs; and a
+        foundational infrastructure: IIFAA decentralized trusted authentication infrastructure (cloud-chain).</p>
+          <div><img src=""/><p>Figure 1 Reference Model</p></div>
+          <p>The IIFAA decentralized trusted authentication service specifically includes:</p>
           <ul>
             <li>
-              分布式可信认证体系中的机构或者个人都需要通过身份服务提供方注册 DID 并将含身份公钥的分布式身份文档上链存证；
+              Organizations or individuals in the decentralized trusted authentication ecosystem must register a DID through an
+              identity provider and upload decentralized identity documents containing their identity public key to the blockchain for
+              storage and verification;
             </li>
             <li>
-              经过用户主动申请，凭证颁发方为用户签发可验证凭证到用户端侧加密存储；
+              Upon user request, issuers grant VCs to the user side for encrypted storage;
             </li>
             <li>
-              当用户需要在特定业务场景出示相关凭证时，经由用户授权后在用户端侧将可验证表达组装签发成可验证表达并提交给业务服务提供方；
+              When users need to present relevant VCs in specific service scenarios, they authorize, assemble, and issue a verifiable
+              presentation on their side, which is then submitted to the service provider;
             </li>
             <li>
-              业务服务提供方通过基础设施获取用户和凭证颁发方的身份公钥，依次进行可验证表达的用户授权验证和凭证颁发方身份验证，验证通过后进一步判断声明内容满足业务场景要求后即可提供场景服务。
+              The service provider, utilizing the infrastructure, accesses the public keys of users and issuers, verifies the user's
+              authorization and the issuer's identity within the verifiable presentation, and upon successful validation, provides the
+              requisite services based on the declared content meeting service scenario needs.
             </li>
           </ul>
       </section>
       <section>
-        <h3>凭证颁发方</h3>
-        <p>凭证颁发方要求如下：</p>
+        <h3>Issuer</h3>
+        <p>The requirements for issuers are as follows:</p>
+        <ol>
+          <li>
+            Reliable identity verification capabilities to authenticate the real identities of users or organizations;
+          </li>
+          <li>
+            Secure data storage and transmission capabilities to safeguard DID information from leakage or alteration;
+          </li>
+          <li>
+            User-friendly design to offer an intuitive user interface and a seamless interactive experience;
+          </li>
+          <li>
+            Sustainable service provision to ensure stability and reliability of services, with continual enhancements to improve
+            user experience;
+          </li>
+          <li>
+            Legal identity credential issuers should be legally authorized organizations;
+          </li>
+          <li>
+            Digital asset credential issuers should have the ability to verify legal identity or service credentials before issuing
+            digital asset credentials;
+          </li>
+          <li>
+            Desirable monitoring and operational capabilities are necessary to oversee and operate VC issuance services, and
+            promptly locate and address issues to maintain system stability and reliability.
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Service Provider (SP)</h3>
+        <p>Within the decentralized trusted authentication system, service providers are organizations that offer a range of
+        business services to users. These providers rely on decentralized trusted authentication capabilities and perform
+        services following VC verification. The requirements for service providers are as follows:</p>
+        <ol>
+          <li>Decentralized authentication capability to verify diverse VCs, including legal identity credentials, service
+          credentials, and digital asset credentials;</li>
+          <li>Capability to verify the identity of the VC issuing organizations;</li>
+          <li>Capability to provide various business services to users, including but not limited to online and offline services;</li>
+          <li>Security measures to ensure the safety and privacy of user VC data and prevent data leakage and misuse;</li>
+          <li>Desirable monitoring and operational capabilities are necessary to oversee and operate VC verification services, and
+          promptly locate and address issues to maintain system stability and reliability.</li>
+        </ol>
+      </section>
+      <section>
+        <h3>Identity Provider (IDP)</h3>
+        <p>The identity provider in the decentralized trusted authentication system offers secure and trustworthy DID registration
+        services to various organizations and users. The requirements for identity provider are as follows:</p>
+        <ol>
+          <li>Implementation of encryption technology to safeguard user data and ensure the security of user identity data against
+          leakage or alteration;</li>
+          <li>Adherence to relevant standards to promote data interoperability;</li>
+          <li>Transparent service provision to enable users to comprehensively understand the registration and utilization of DID;</li>
+          <li>Provision of various identity registration methods, including web pages, mobile applications, and APIs to facilitate
+          user registration and the use of DID;</li>
+          <li>Provision of a DID security mechanism to leverage multi-party computation and ZK-SNARK to enable recovery of lost
+          identity information;</li>
+          <li>Monitoring and operational capabilities to oversee and operate DID registration services, promptly locate and address
+          issues to maintain system stability and reliability.</li>
+        </ol>
+      </section>
+      <section>
+        <h3>DID Holder</h3>
+        <p>DID holders can be any organization or individual that holds a DID, such as an ordinary user, issuer, or service
+        provider. They possess private rights to use their DIDs. The requirements for DID holders are as follows:</p>
+        <ol>
+          <li>Multiple authentication methods, including but not limited to passwords, biometric technologies, etc., to ensure the
+          user's identity is not misused;</li>
+          <li>Capability to authorize other organizations or individuals to verify their identity, serving as proof of holding the
+          current DID;</li>
+          <li>Capability to issue verifiable presentations, allowing the holder to authorize and present VCs under the current DID to
+          other organizations or individuals;</li>
+          <li>Security safeguard and privacy protection abilities to prevent identity information from being leaked or misused;</li>
+          <li>Scalability to support large-scale identity authentication and authorization demands;</li>
+          <li>Standardization capability to enable interoperability and integration with other identity authentication and
+          authorization systems.</li>
+        </ol>
+      </section>
+    </section>
+    <section>
+      <h2>Technical Architecture and Functions</h2>
+      <section>
+        <h3>Technical Architecture</h3>
+        <p>The IIFAA decentralized trusted authentication system's technical architecture is depicted in Figure 2. This
+        architecture includes underlying storage, a unified service and control platform, the IIFAA ecosystem operation
+        platform, issuers, the decentralized trusted authentication infrastructure, service providers, and user sides.</p>
+        <p>The underlying storage module is primarily responsible for the public display of DID identity documents on the
+        blockchain, using smart contract capabilities for adding and modifying DID documents. The unified service and control
+        platform manages organizational entities, trust anchoring, and is responsible for VC presentation traceability and
+        statistics. It ensures the trusted entry of VC issuing organizations and the trusted access of identity service
+        providers and conducts VC presentation tracing and auditing for unified management and standardized growth. The IIFAA
+        ecologic operation platform handles VC template management, service scenario management, and service administration. It
+        is responsible for the configuration, application, and approval processes of various VC templates and service scenarios,
+        as well as user service management. Issuers and service providers primarily focus on VC issuance and validation. The
+        decentralized trusted authentication infrastructure offers general SaaS capabilities, such as interactions between
+        identity services and blockchain, user private key escrow, and VC presentation escrow and traceability. The user side is
+        responsible for managing user VCs and presentations, as well as handling decentralized identities on user terminals.</p>
+        <div><img src=""/><p>Figure 2 Technical Architecture</p> </div>
+      </section>
+      <section>
+        <h3>User Terminal</h3>
+        
+          <p>Comprising a terminal security foundation layer, core protocol layer, and application service layer, the decentralized
+          trusted authentication system provides services such as decentralized identity and VC information management for users.
+          These components collaborate to secure and maintain the confidentiality of user identities and VCs.</p>
+      
+        <section>
+          <h4>Terminal Security Foundation Layer</h4>
+          <p>This layer provides security based on the terminal environment. Utilizing the terminal's Trusted Execution Environment
+          (TEE or SE) and SIM card security areas, it offers core security functionalities for higher-level services, including
+          but not limited to secure storage, trusted computing, key management, trusted interactions, and device authentication.</p>
+        </section>
+        <section>
+          <h4>Terminal Core Protocol Layer</h4>
+          <p>Building upon the security capabilities of the terminal security foundation layer, this layer offers unified
+          decentralized identity management services, including local identity creation and update, authorization, and
+          verification. Additionally, it provides VC management services, such as VC import and revocation, and verifiable
+          presentation management, including issuance, selective disclosure, ZK-SNARK, etc. These services enhance the security
+          and trustworthiness of decentralized identities, underpinning digital identity applications with robust terminal
+          foundation support.</p>
+        </section>
+        <section>
+          <h4>Terminal Core Service Layer</h4>
+          
+            <p>Built on the DID core protocol layer, this layer links decentralized identity infrastructure, issuers, and service
+            providers to offer users complete decentralized trusted authentication capabilities and services.</p>
+        
+          <section>
+            <h5>Decentralized Identity Management</h5>
+            <p>Decentralized identity management involves storing and using decentralized identities on various user devices, including
+            but not limited to smartphones and servers. The requirements for decentralized identity management are as follows:</p>
+            <ol>
+              <li>Capability for decentralized identity registration, involving the generation of identity keys at the user's end during
+              registration, coupled with the generation of a complete decentralized identity document through the identity provider,
+              followed by blockchain storage;</li>
+              <li>Capability for storage and utilization of decentralized identity keys, securely housed on the user side, to enable
+              operations such as data signing post user authorization;</li>
+              <li>Capability for decentralized identity cancellation to allow users to actively deregister their decentralized identity
+              and change the status of the blockchain decentralized identity document to "Closed;"</li>
+              <li>Provision of cryptographic security mechanisms to protect users' identity information from unauthorized access and cyber
+              attacks;</li>
+              <li>Recommended ease of use and configuration to offer a user-friendly interface and experience for the registration and
+              management of decentralized identities.</li>
+            </ol>
+          </section>
+          <section>
+            <h5>Decentralized Identity Verification</h5>
+            <p>Decentralized identity verification refers to the independent verification of identity by any organization within the
+            decentralized trusted authentication system, devoid of reliance on centralized nodes. By leveraging the terminal's
+            trusted environment, it combines verification methods like passwords and facial or fingerprint recognition with
+            technologies such as DPKI and ZK-SNARK. Verification key elements and methods are made public on the blockchain,
+            enabling any organization requiring user DID verification to independently access blockchain identity information and
+            complete identity verification through methods like private key signature validation and ZK-SNARK checks. The
+            requirements for decentralized verification are as follows:</p>
+            <ol>
+              <li>Identity verification capabilities use methods like passwords, fingerprints, or facial recognition to verify the current
+              user's identity and prevent identity impersonation, adhering to the fingerprint verification requirements specified in
+              IIFAA Local Password-Free Technology Specification 2.0;</li>
+              <li>Operations based on trusted environments such as TEE or SE to ensure the trustworthiness of the identity verification
+              computational process;</li>
+              <li>Blockchain publication of non-sensitive verification key elements and methods for autonomous identity verification by
+              any organization needing to verify user DID;</li>
+              <li>Recommended ease of use and configuration to offer a user-friendly interface and experience for the utilization of
+              decentralized identity verification features.</li>
+            </ol>
+          </section>
+          <section>
+            <h5>VC Management</h5>
+            <p>VC management involves centralized storage and management of various VCs, including legal identity credentials, service
+            credentials, and digital asset credentials. This ensures the security and validity of these VCs, preventing illegal use
+            and alteration. The requirements for VC management are as follows:</p>
+            <ol>
+              <li>VC import capability to allow the importation of VC data encrypted with the user's public key to the user side, followed
+              by decryption and persistent storage;</li>
+              <li>Capability for VC summary sets query to access all VC summaries under a specified DID, including information like the
+              VC's issuers, types, etc.;</li>
+              <li>Capability for detailed VC information query, including complete information of a specific VC ID;</li>
+              <li>Capability to delete VCs to remove VC data corresponding to a specified VC ID.</li>
+            </ol>
+          </section>
+          <section>
+            <h5>VC Presentation</h5>
+            <p>Based on current scenario requirements, users are provided with a selection and authorization of VC content that meets
+            the criteria. Following the principle of minimal privacy disclosure, users select and authorize the presentation of
+            relevant fields. Then, according to standard protocols, a VP is assembled, and signed with the DID private key, and the
+            signed VP information is presented to the scenario-based service provider for validation. Throughout the entire process,
+            the handling and signing of VCs are carried out within a secure environment on the user side. This is done following the
+            principle of minimal privacy disclosure for both selection and authorization, ensuring the security and privacy of user
+            data. The requirements for VC presentation functionality are as follows:</p>
+            <ol>
+              <li>
+              Adherence to the principle of minimal privacy disclosure when presenting relevant fields to safeguard user identity
+              information from leakage or misuse;
+              </li>
+              <li>
+              Assembling VP according to standard protocols and signing with the DID private key to ensure the authenticity and
+              completeness of VCs;
+              </li>
+              <li>
+              Completing VC processing and signing within a trusted environment like TEE or SE to guarantee the security and privacy
+              of user data.
+              </li>
+            </ol>
+          </section>
+         
+        </section>
+      </section>
+      <section>
+        <h3>Issuer</h3>
+        <section>
+          <h4>VC Issuance</h4>
+          <p>The requirements for VC issuance are as follows:</p>
+          <ol>
+            <li>VC template verification capability, with issuers verifying the template before each VC issuance after completing
+            registration and template configuration on the IIFAA ecologic operation platform, to ensure the issued VCs complies with
+            standards;</li>
+            <li>Identity authentication capability, with issuers conducting varying levels of customer identity checks based on the type
+            of VC being issued in the VC application and issuance process;</li>
+            <li>Privacy disclosure processing capability, with issuers implementing the issuer's logic for privacy disclosure in the VC
+            issuance procedure, if such abilities and types are defined in the issuer's template configuration, including but not
+            limited to selective disclosure, minimal privacy disclosure, ZK-SNARK, etc.;</li>
+            <li>Credential encryption issuance capability, with issuers encrypting VCs before delivering them to users;</li>
+            <li>Issuers should establish a mapping relationship between the VC ID, subject ID, and existing data of the issuer.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>VC Revocation</h4>
+          <p>The requirements for VC revocation functionality are as follows:</p>
+          <ol>
+            <li>If issuers need to define a VC status field for VC, they should maintain VC status information as per the W3C-defined VC
+            status standard. They must also provide an interface as defined in the VC status information for querying VC
+            information;</li>
+            <li>Issuers shall maintain the VC revocation status by means including but not limited to blockchain, database, and caches,
+            and configure an interface for revocation status query as defined in the VC status information.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>VC Traceability Configuration</h4>
+          <p>If an issuer requires VCs to be traceable, he/she shall configure the corresponding VC template that supports
+          traceability on the IIFAA ecological operation platform, and define the specific information that needs to be traced.</p>
+        </section>
+      </section>
+      <section>
+        <h3>Decentralized Trusted Authentication Infrastructure</h3>
+        <section>
+          <h4>Identity Service</h4>
+          <p>The identity service requirements are as follows:</p>
+          <ol>
+            <li>DID service to implement the DID parsing layer, which enables the interaction with the blockchain through a smart
+            contract, for DID creation, query, modification, and deletion;</li>
+            <li>Recommended alias service with functions such as quick use and retrieval of DIDs, including defining the basic alias
+            rules, maintaining the one-to-one mapping relationships between an alias and a DID, and implementing alias creation,
+            query, modification, and deletion.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>Private Key Escrow</h4>
+          <p>The decentralized DID private key escrow service shall be provisioned based on technologies including but not limited to
+          MPC Key Share, TEE, privacy computing, access control and permission management, and multi-factor authentication (MFA).</p>
+        </section>
+        <section>
+          <h4>VC Escrow</h4>
+          <p>The VC encryption escrow service shall be provisioned.</p>
+        </section>
+        <section>
+          <h4>VC Traceability</h4>
+          <p>The VC traceability requirements are as follows:</p>
+          <ol>
+            <li>VC traceability, that is, when a user presents a VP containing a VC that needs to be traceable, the VC shall be
+            encrypted using a security key of the IIFAA decentralized infrastructure, and an interface shall be configured for SPs
+            to obtain the security key for decryption before authenticating the VP. VC traceability information is classified into
+            basic information and custom information. The basic information is stored in plaintext and contains issuer DID, SP DID,
+            VC type, VC presentation time, and VC authentication time. The custom information is encrypted for storage and includes
+            user DID, VC ID, and service scenarios.</li>
+            <li>Capability to query VC traceability information, and provisioning of an interface for issuers to query the above VC
+            traceability information.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>VC Escrow</h4>
+          <p>The VP encryption escrow capability shall be provisioned. That is, when a user encrypts a VP and submits the encrypted
+          VP to the platform, the platform returns a unique encrypted ID, based on which, SPs can query the encrypted VP.</p>
+        </section>
+        
+      </section>
+      <section>
+        <h3>SPs</h3>
+        <section>
+          <h4>VP Verification</h4>
+          <p>During VP verification, SPs shall have the capability to verify the signature of the verifiable statement, the signature
+          and status of the VC(s) contained in the verifiable statement, the nature of privacy disclosure, and the subject
+          consistency between the VC and the verifiable statement. If SPs are required to be capable of verifying whether the VP
+          is anti-replay, such capability shall be deployed on the IIFAA decentralized trusted authentication infrastructure, and
+          the anti-replay check shall be executed.</p>
+          <p>During statement verification, SPs shall have the capability to verify the identities of organizations that issue legal
+          identity credentials.</p>
+        </section>
+        <section>
+          <h4>Organization Verification</h4>
+          <p>SPs shall have the capability to verify the identities of VC issuers.</p>
+        </section>
+      </section>
+      <section>
+        <h3>IIFAA Ecologic Operation Platform</h3>
+        <section>
+          <h4>VC Template Management</h4>
+          <p>The IIFAA ecologic operation platform shall provide the management of VC templates to constrain the attribute profiles
+          of the VCs issued by issuers. The attribute profile management ensures unified attribute fields of VC templates. An
+          issuer can request issuing VCs in a specified VC template, and after the request is approved, the issuer can issue VCs
+          using this template. SPs can query VCs that are already issued by issuers through scenario configurations, and use the
+          appropriate VCs.</p>
+          <p>VC templates shall be hierarchical. That is, legal identity VC templates are available for legal identity issuers only,
+          and general identity VC templates are available for both legal identity issuers and general identity issuers. In
+          addition, VC templates should be classified according to different industries, and their application scopes shall be
+          clearly defined.</p>
+          <p>For this feature, the IIFAA platform:</p>
+          <ol>
+            <li>Should have the capability to input attributes, and specify the available attributes of VC templates and their
+            definition;</li>
+            <li>Should have the capability to edit attributes by modifying their definitions;</li>
+            <li>Should have the capability to query the list of attributes, query all existing attributes in an trusted manner, and
+            input VC templates. It can configure VC type, VC level, and VC template name & description, and select the attributes
+            required by the template to configure jsonSchema constraints corresponding to the VC template;</li>
+            <li>Shall have the capability to edit VC templates by modifying information about the template except for the template name;</li>
+            <li>Shall have the capability to query VC template list, that is, to query all configured VC templates;</li>
+            <li>Shall have the capability to apply for VC templates as an issuer. Issuers can apply for existing VC templates;</li>
+            <li>Shall have the capability to approve VC templates as an issuer. When an issuer applies for a VC template, the VC
+            template needs to be reviewed by the IDP operator, and after that, the issuer can issue VCs using this VC template;</li>
+            <li>Shall have the capability to query the VC template list as a specified issuer, that is to query all VC templates that
+            have been reviewed and approved by issuers. SPs can configure their service scenario policies using these templates.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>Scenario Management</h4>
+          <p>The service scenario policy configuration function shall be provisioned so that an SP can configure a VC policy for the
+          current scenario using a VC template that has been reviewed and approved by the corresponding issuer. After the IDP
+          operator reviews the scenario, the service scenario can go online for specified VCs.</p>
+          <p>For this feature, the IIFAA platform:</p>
+          <ol>
+            <li>Should have the capability to create VC policies. In most cases, to build a VC use policy, the platform specifies the VC
+            information to be used in this policy, whether each attribute is required in each VC, and whether the required fields
+            are subject to the minimum disclosure policy.</li>
+            <li>Should have the capability to query VC policies, that is, to query all created VC policies.</li>
+            <li>Shall have the capability to apply service scenarios, that is, to create a complete scenario request sheet by selecting
+            a VC policy and filling in basic scenario information such as logo, destination address, encryption algorithm, and
+            service DID.</li>
+            <li>Shall have the capability to review service scenarios. It is recommended that the IDP operator or the related issuer in
+            the VC policy be responsible for the review of the scenario.</li>
+            <li>Shall have the capability to modify service scenarios, that is, enable the SP owning a scenario to modify the scenario,
+            and such modification will take effect only after being re-approved.</li>
+            <li>Shall have the capability to query service scenario list, that is, to query all approved scenarios.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>Service Scenario Display</h4>
+          <p>A list page should be configured to display all online service scenarios so that users can enjoy desired services via
+          the corresponding ingresses.</p>
+        </section>
+        <section>
+          <h4>VC List Display</h4>
+          <p>A list page should be configured to display all online VCs so that users can apply for desired VCs for use.</p>
+        </section>
+      </section>
+      <section>
+        <h3>Unified Service and Control Platform</h3>
+        <p>The unified service and control platform is used for organization registration and authentication, and it can provide
+        the trust anchoring service to establish an organization information chain. It also has certain VC traceability and
+        audit capability.</p>
+        <section>
+          <h4>Organization Management</h4>
+          <p>The platform shall implement the registration and management of organization information, and these organizations may be
+          issuers or SPs. Organizations that issue legal identity credentials shall be certified by an authoritative CA agency,
+          while for those that issue service credentials or digital asset credentials, domain name-based authentication is
+          recommended.</p>
+          <p>For this module, the unified service and control platform shall have the following capabilities:</p>
+          <ol>
+            <li>Capability to register organization information and store organization-related information securely;</li>
+            <li>Capability to review organization information for authentication of service organizations or legal identity credential
+            issuers;</li>
+            <li>Capability to edit organization information;</li>
+            <li>Capability to query organization, that is, to query organizations from the organization information list.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>Trust Anchoring</h4>
+          <p>Trust anchoring is a process of establishing and maintaining trust on the basis of a reliable entity or mechanism. As a
+          key component for building a trust architecture, trust anchoring provides a verifiable and reliable reference point that
+          assures participants of the confidence level of a system or entity.</p>
+          <p>Decentralized identity trust anchoring shall enable trusted authentication of issuers and access of legal identity
+          issuers, for unified management, control, and standardized development of organizations including issuers and SPs.</p>
+        </section>
+        <section>
+          <h4>Traceability and Audit</h4>
+          <p>The user identity credential traceability and audit capacity shall be provisioned. For this module, the unified service
+          and control platform shall have the following capabilities:</p>
+        </section>
+        <ol>
+          <li>Capability to record the usage history of all VCs for traceability and audit.</li>
+          <li>Capability to record the privacy protection of user information during record use without retaining any VC details, and
+          ensure that identity information is accessible to authorized individuals or organizations only.</li>
+          <li>Traceability and audit capability based on VC issuers, that is, to measure the presentations of VCs issued by an issuer.</li>
+          <li>Traceability and audit capability based on SPs, that is, to measure the presentations of VCs used by an SP.</li>
+        </ol>
       </section>
     </section>
   </body>
