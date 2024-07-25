@@ -51,9 +51,9 @@
         <p>The IIFAA decentralized trusted authentication service reference model is depicted in Figure 1. It comprises four
         pivotal roles: issuer, service provider, identity provider, and DID holder; two key data types: VCs and VPs; and a
         foundational infrastructure: IIFAA decentralized trusted authentication infrastructure (cloud-chain).</p>
-          <div><img src=""/><p>Figure 1 Reference Model</p></div>
+          <div><img src="img/Figure1.png" height="400" width="auto"/><p>Figure 1 Reference Model</p></div>
           <p>The IIFAA decentralized trusted authentication service specifically includes:</p>
-          <ul>
+          <ol type="a">
             <li>
               Organizations or individuals in the decentralized trusted authentication ecosystem must register a DID through an
               identity provider and upload decentralized identity documents containing their identity public key to the blockchain for
@@ -71,12 +71,12 @@
               authorization and the issuer's identity within the verifiable presentation, and upon successful validation, provides the
               requisite services based on the declared content meeting service scenario needs.
             </li>
-          </ul>
+          </ol>
       </section>
       <section>
         <h3>Issuer</h3>
         <p>The requirements for issuers are as follows:</p>
-        <ol>
+        <ol type="a">
           <li>
             Reliable identity verification capabilities to authenticate the real identities of users or organizations;
           </li>
@@ -109,7 +109,7 @@
         <p>Within the decentralized trusted authentication system, service providers are organizations that offer a range of
         business services to users. These providers rely on decentralized trusted authentication capabilities and perform
         services following VC verification. The requirements for service providers are as follows:</p>
-        <ol>
+        <ol type="a">
           <li>Decentralized authentication capability to verify diverse VCs, including legal identity credentials, service
           credentials, and digital asset credentials;</li>
           <li>Capability to verify the identity of the VC issuing organizations;</li>
@@ -123,7 +123,7 @@
         <h3>Identity Provider (IDP)</h3>
         <p>The identity provider in the decentralized trusted authentication system offers secure and trustworthy DID registration
         services to various organizations and users. The requirements for identity provider are as follows:</p>
-        <ol>
+        <ol type="a">
           <li>Implementation of encryption technology to safeguard user data and ensure the security of user identity data against
           leakage or alteration;</li>
           <li>Adherence to relevant standards to promote data interoperability;</li>
@@ -140,7 +140,7 @@
         <h3>DID Holder</h3>
         <p>DID holders can be any organization or individual that holds a DID, such as an ordinary user, issuer, or service
         provider. They possess private rights to use their DIDs. The requirements for DID holders are as follows:</p>
-        <ol>
+        <ol type="a">
           <li>Multiple authentication methods, including but not limited to passwords, biometric technologies, etc., to ensure the
           user's identity is not misused;</li>
           <li>Capability to authorize other organizations or individuals to verify their identity, serving as proof of holding the
@@ -172,7 +172,8 @@
         decentralized trusted authentication infrastructure offers general SaaS capabilities, such as interactions between
         identity services and blockchain, user private key escrow, and VC presentation escrow and traceability. The user side is
         responsible for managing user VCs and presentations, as well as handling decentralized identities on user terminals.</p>
-        <div><img src=""/><p>Figure 2 Technical Architecture</p> </div>
+          
+        <div><img src="img/Figure2.png" height="400" width="auto"/><p>Figure 2 Technical Architecture</p> </div>
       </section>
       <section>
         <h3>User Terminal</h3>
@@ -206,7 +207,7 @@
             <h5>Decentralized Identity Management</h5>
             <p>Decentralized identity management involves storing and using decentralized identities on various user devices, including
             but not limited to smartphones and servers. The requirements for decentralized identity management are as follows:</p>
-            <ol>
+            <ol type="a">
               <li>Capability for decentralized identity registration, involving the generation of identity keys at the user's end during
               registration, coupled with the generation of a complete decentralized identity document through the identity provider,
               followed by blockchain storage;</li>
@@ -229,7 +230,7 @@
             enabling any organization requiring user DID verification to independently access blockchain identity information and
             complete identity verification through methods like private key signature validation and ZK-SNARK checks. The
             requirements for decentralized verification are as follows:</p>
-            <ol>
+            <ol type="a">
               <li>Identity verification capabilities use methods like passwords, fingerprints, or facial recognition to verify the current
               user's identity and prevent identity impersonation, adhering to the fingerprint verification requirements specified in
               IIFAA Local Password-Free Technology Specification 2.0;</li>
@@ -246,7 +247,7 @@
             <p>VC management involves centralized storage and management of various VCs, including legal identity credentials, service
             credentials, and digital asset credentials. This ensures the security and validity of these VCs, preventing illegal use
             and alteration. The requirements for VC management are as follows:</p>
-            <ol>
+            <ol type="a">
               <li>VC import capability to allow the importation of VC data encrypted with the user's public key to the user side, followed
               by decryption and persistent storage;</li>
               <li>Capability for VC summary sets query to access all VC summaries under a specified DID, including information like the
@@ -264,7 +265,7 @@
             the handling and signing of VCs are carried out within a secure environment on the user side. This is done following the
             principle of minimal privacy disclosure for both selection and authorization, ensuring the security and privacy of user
             data. The requirements for VC presentation functionality are as follows:</p>
-            <ol>
+            <ol type="a">
               <li>
               Adherence to the principle of minimal privacy disclosure when presenting relevant fields to safeguard user identity
               information from leakage or misuse;
@@ -287,7 +288,7 @@
         <section>
           <h4>VC Issuance</h4>
           <p>The requirements for VC issuance are as follows:</p>
-          <ol>
+          <ol type="a">
             <li>VC template verification capability, with issuers verifying the template before each VC issuance after completing
             registration and template configuration on the IIFAA ecologic operation platform, to ensure the issued VCs complies with
             standards;</li>
@@ -303,7 +304,7 @@
         <section>
           <h4>VC Revocation</h4>
           <p>The requirements for VC revocation functionality are as follows:</p>
-          <ol>
+          <ol type="a">
             <li>If issuers need to define a VC status field for VC, they should maintain VC status information as per the W3C-defined VC
             status standard. They must also provide an interface as defined in the VC status information for querying VC
             information;</li>
@@ -322,7 +323,7 @@
         <section>
           <h4>Identity Service</h4>
           <p>The identity service requirements are as follows:</p>
-          <ol>
+          <ol type="a">
             <li>DID service to implement the DID parsing layer, which enables the interaction with the blockchain through a smart
             contract, for DID creation, query, modification, and deletion;</li>
             <li>Recommended alias service with functions such as quick use and retrieval of DIDs, including defining the basic alias
@@ -342,7 +343,7 @@
         <section>
           <h4>VC Traceability</h4>
           <p>The VC traceability requirements are as follows:</p>
-          <ol>
+          <ol type="a">
             <li>VC traceability, that is, when a user presents a VP containing a VC that needs to be traceable, the VC shall be
             encrypted using a security key of the IIFAA decentralized infrastructure, and an interface shall be configured for SPs
             to obtain the security key for decryption before authenticating the VP. VC traceability information is classified into
@@ -391,7 +392,7 @@
           addition, VC templates should be classified according to different industries, and their application scopes shall be
           clearly defined.</p>
           <p>For this feature, the IIFAA platform:</p>
-          <ol>
+          <ol type="a">
             <li>Should have the capability to input attributes, and specify the available attributes of VC templates and their
             definition;</li>
             <li>Should have the capability to edit attributes by modifying their definitions;</li>
@@ -413,7 +414,7 @@
           current scenario using a VC template that has been reviewed and approved by the corresponding issuer. After the IDP
           operator reviews the scenario, the service scenario can go online for specified VCs.</p>
           <p>For this feature, the IIFAA platform:</p>
-          <ol>
+          <ol type="a">
             <li>Should have the capability to create VC policies. In most cases, to build a VC use policy, the platform specifies the VC
             information to be used in this policy, whether each attribute is required in each VC, and whether the required fields
             are subject to the minimum disclosure policy.</li>
@@ -450,7 +451,7 @@
           while for those that issue service credentials or digital asset credentials, domain name-based authentication is
           recommended.</p>
           <p>For this module, the unified service and control platform shall have the following capabilities:</p>
-          <ol>
+          <ol type="a">
             <li>Capability to register organization information and store organization-related information securely;</li>
             <li>Capability to review organization information for authentication of service organizations or legal identity credential
             issuers;</li>
@@ -471,7 +472,7 @@
           <p>The user identity credential traceability and audit capacity shall be provisioned. For this module, the unified service
           and control platform shall have the following capabilities:</p>
         </section>
-        <ol>
+        <ol type="a">
           <li>Capability to record the usage history of all VCs for traceability and audit.</li>
           <li>Capability to record the privacy protection of user information during record use without retaining any VC details, and
           ensure that identity information is accessible to authorized individuals or organizations only.</li>
@@ -479,6 +480,537 @@
           <li>Traceability and audit capability based on SPs, that is, to measure the presentations of VCs used by an SP.</li>
         </ol>
       </section>
+    </section>
+    <section>
+      <h2>Service Procedure</h2>
+      <section>
+        <h3>Organization Registration Procedure</h3>
+        <p>In the decentralized trusted authentication system, organizations fall into two categories: VC issuers who issue VCs to
+        users, and SPs who, based on the VPs given by users, obtain user information and provide services. The prerequisite for
+        the healthy operation of the decentralized trusted authentication system is that users hold reliable VCs. Therefore,
+        when registering with the unified service and control platform, issuers need to go through an authentication procedure
+        to verify that they are authoritative and reliable. Although the right to use data belongs to users, for healthy data
+        transfer, SPs also need to go through authentication to avoid malicious information collection and data abuse.</p>
+        <section>
+          <h4>Issuer Registration</h4>
+          <img src="img/Figure3.png" height="400" width="auto"/><p>Figure 3 Issuer Registration Procedure</p>
+          <p>The issuer registration procedure is shown in Figure 3. During registration, an issuer needs to submit related
+          information as required by the unified service and control platform. After the information is reviewed, the platform
+          notifies the IDP to generate a DID for the issuer and uploads some information to the blockchain for publicity. Issuers
+          are divided into legal organizations and ordinary organizations. The digital VCs issued by legal organizations are more
+          authoritative and have a wider range of application scenarios. Therefore, legal organizations need to go through a more
+          stringent authentication, for which, CA-based authentication is recommended. For ordinary organizations, domain
+          name-based authentication is recommended. The specific issuer registration procedure is as follows:</p>
+          <ol type="a">
+            <li>
+              An issuer generates private keys and stores them securely (1).
+
+            </li>
+            <li>
+              The issuer submits information such as public keys, website domain name, and website name to the unified service and
+              control platform (2).
+            
+            </li>
+            <li>
+            The issuer selects an appropriate authentication method depending on its organization type. If the issuer is a legal
+            organization, it selects CA authentication and submits a CA certificate issued by an authoritative CA agency for
+            authentication. If the issuer is an ordinary organization, it goes through domain name-based authentication (3).
+            </li>
+            <li>
+            The unified service and control platform reviews and verifies the information submitted by the issuer. After successful
+            verification, the platform notifies the IDP to generate a DID, uploads it to the blockchain, and returns the related
+            information to the issuer (4, 5, 6, 7).
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h4>SP Registration</h4>
+          <img src="img/Figure4.png" height="400" width="auto"/><p>Figure 4 SP Registration Procedure</p>
+          <p>The SP registration procedure is shown in Figure 4. During registration, an SP submits information as required. After
+          the information is reviewed, the IDP generates the corresponding DID and uploads some information to the blockchain.
+          When creating an application scenario, the SP can select a specified issuer as the data issuer. To prevent SPs from
+          maliciously collecting and abusing data, the unified service and control platform or issuer will review the SP's
+          scenario access based on the issuer's data use requirements. After the review, the scenario is configured for future
+          use. The specific procedure is as follows:</p>
+          <ol type="a">
+            <li>An SP generates private keys and stores them securely (1).</li>
+            <li>The SP submits information such as name, logo, and public keys to the unified service and control platform (2).</li>
+            <li>The platform reviews and verifies the information submitted by the SP. After the information is reviewed, the platform
+            notifies the IDP to generate a DID, uploads it to the blockchain, and returns it to the SP (3, 4).</li>
+            <li>The SP creates an application scenario on the platform and specifies the dependent data source (5).</li>
+            <li>If the issuer specifies that approval is required for its VCs, the SP initiates an application (6).</li>
+            <li>After the application is approved by the issuer, the platform generates the scenario configuration for future use by the
+            SP (7).</li>
+          </ol>
+        </section>
+
+
+      </section>
+      <section>
+        <h3>VC Issuance Procedure</h3>
+        <p>The VC issuance procedure is shown in Figure 5. A user creates a DID and applies for a VC on the terminal, and the
+        corresponding issuer authenticates the user's identity and then issues the VC. The issuance procedure is the same for
+        different types of VC, with some differences in user authentication. To issue a legal identity credential, the
+        corresponding issuer authenticates the user's identity through face and ID comparison. To issue a service credential or
+        digital asset credential, the corresponding issuer can authenticate the user's identity through face and ID comparison
+        or based on the user's legal identity credential on the terminal.</p>
+        <img src="img/Figure6.png" height="400" width="auto"/><p>Figure 6 VP Procedure</p>
+        <p>The VC issuance procedure is as follows:</p>
+        <ol type="a">
+          <li>A user initiates a request for creating a DID on the app (1).</li>
+          <li>The trusted key components of the terminal generate public and private keys (2).</li>
+          <li>The terminal uploads public keys to the IDP and initiates a request for creating a DID (3).</li>
+          <li>The IDP generates a DID document based on the public keys and uploads the public keys and DID document to the blockchain
+          (4).</li>
+          <li>The terminal receives the DID document returned by the IDP and calls the trusted storage components for data storage
+          (5).</li>
+          <li>The terminal applies for a VC from the issuer (6).</li>
+          <li>Depending on the type of the applied VC, the issuer authenticates the user's identity using an appropriate method (7).</li>
+          <li>The issuer signs the VC with its own DID private key and then encrypts it with the user's DID public key. The encrypted
+          data is sent to the terminal, which stores it securely through the trusted storage component (8).</li>
+
+        </ol>
+        <p>In the above steps, if the terminal already has a DID, ignore steps a) to e), and go to step f) directly.</p>
+      </section>
+      <section>
+        <h3>VP Procedure</h3>
+        <img src="img/Figure5.png" height="400" width="auto"/><p>Figure 5 VC Issuance Procedure</p>
+        <p>The VP procedure is shown in Figure 6. To enjoy the services provided by an SP, a user needs to apply for a VC from the
+        asset issuer and generate a VP per the SP's service scenario requirements. After the VP is generated, the SP verifies
+        the VP to complete user authentication, and then provides services for the user. The specific procedure is as follows:</p>
+        <ol type="a">
+          <li>Before using the services provided by an SP, a user needs to submit his/her data and information for authentication (1).</li>
+          <li>The terminal queries the configurations of the SP, and obtains the SP's requirements for user data in this scenario (2).</li>
+          <li>The user authorizes the application vendor and VC corresponding to the presentation.</li>
+          <li>The terminal selects a proper VC based on the configurations, constructs VP content using the SP's DID and public key,
+          and then signs the VP content with the user's private key to generate a VP (4).</li>
+          <li>The terminal encrypts the VP with the SP's public key and then transmits it to the SP (5).</li>
+          <li>The SP decrypts and verifies the VP data, and authenticates the user information based on the original data (6).</li>
+          <li>The SP authenticates the user, and then provides services for the user (7).</li>
+        </ol>
+      </section>
+    </section>
+    <section>
+      <h2>Security Requirements</h2>
+      <section>
+        <h3>Password Locks Security</h3>
+        <p>Applicable encryption algorithms shall be selected and applied according to specific conditions, and the encryption
+        algorithms for security and reliability shall be used to ensure data confidentiality, integrity, and availability. The
+        supported cryptographic algorithms include:</p>
+        <ol type="a">
+          <li>Symmetric encryption algorithms, including SM4, AES, etc.</li>
+          <li>Asymmetric encryption algorithms, including SM2, RSA (2048 or above), DSA, ECC, etc.</li>
+          <li>Abstract algorithm, including SM3, SHA-2, SHA-3, etc.</li>
+        </ol>
+        <p class="ednote">Note: Symmetric encryption algorithms are mainly used for encrypted data storage and transmission. Asymmetric encryption
+        algorithms are for digital signature and authentication. Message abstract algorithms are for cryptographic hashing and
+        digital signature.</p>
+      </section>
+      <section>
+        <h3>Data Security</h3>
+        <p>It shall be as per GB/T 41479, in addition to the following requirements:</p>
+        <ol type="a">
+          <li>Encryption communication: Data shall be encrypted to avoid being eavesdropped during transmission.</li>
+          <li>Two-way authentication: Both endpoints of the data transmission shall go through authentication to avoid illegal access
+          or data breach.</li>
+          <li>Security protocol: TLS, TLCP, or other security protocols shall be used to ensure security during data transmission.</li>
+          <li>Anti-replay: Measures against replay attacks, such as timestamps and random numbers, shall be taken to ensure
+          reliability during data transmission.</li>
+          <li>Data integrity: Integrity shall be ensured during data transmission to protect data from being tampered with.</li>
+          <li>Secure storage: Data shall be stored securely after transmission.</li>
+        </ol>
+      </section>
+      <section>
+        <h3>Server Security</h3>
+        <p>The requirements are as follows:</p>
+        <ol type="a">
+          <li>OS security: For device security, the security patches and software versions shall be updated in time for the operating
+          systems of server devices.</li>
+          <li>Application security: For application security, the applications installed on server devices shall be kept up-to-date,
+          and unaudited applications shall be avoided.</li>
+          <li>Password and identity authentication: The password and identity authentication shall be configured on server devices to
+          ensure that only authorized personnel can access these devices.</li>
+          <li>Anti-virus and malicious software: The anti-virus and malware scan programs shall be installed and periodically executed
+          to protect devices from being attacked by viruses and malware.</li>
+        </ol>
+      </section>
+      <section>
+        <h3>Terminal Security</h3>
+        <p>The requirements are as follows:</p>
+        <ol type="a">
+          <li>Secure boot: The OS and applications on terminals shall be protected from being tampered with or replaced by malware
+          during startup.</li>
+          <li>Secure storage: Data stored on terminals shall be encrypted and protected from being accessed or used by unauthorized
+          persons or malware.</li>
+          <li>Secure operating environment (such as TEE): The applications on terminals shall be protected from being attacked by
+          malware or other threats during operation.</li>
+          <li>Secure communication: Terminals shall be able to interact with each other securely so that data will not be tampered
+          with or eavesdropped during transmission.</li>
+          <li>Secure update: The OS and applications on terminals shall be protected from being tampered with or replaced by malware
+          during updates, and the update process shall be secure.</li>
+          <li>Trusted authentication: The user authentication on terminals shall be trusted so that only authorized users can access
+          devices and data.</li>
+          <li>The biometrics recognition on mobile devices shall be as per GB/T 37036 (All parts).</li>
+        </ol>
+      </section>
+      <section>
+        <h3>Server Security Requirements</h3>
+        <p>The requirements are as follows:</p>
+        <ol type="a">
+          <li>The server shall authenticate all requests to ensure that these requests come from legal users or clients.</li>
+          <li>The server shall implement access control so that only authorized users or clients can access specified resources.</li>
+          <li>The server shall handle faults and exceptions in time to avoid server attacks and service interruptions.</li>
+          <li>The server shall record all access logs and exception logs for tracking and analysis.</li>
+          <li>The server shall establish an emergency response mechanism for the timely handling of security events and threats.</li>
+        </ol>
+      </section>
+    </section>
+    <section>
+      <h2>Personal Information Protection Requirements</h2>
+      <section>
+        <h3>General Requirements</h3>
+        <p>Personal information and biometric information shall be as per GB/T 35273 and GB/T 40660. Face recognition data shall
+        also comply with GB/T 41819.</p>
+      </section>
+      <section>
+        <h3>Biometric Data Masking Requirements</h3>
+        <p>Raw biometric data should be anonymized into the irreversible ZK-SNARK to ensure the security and privacy of users'
+        biometric data.</p>
+      </section>
+      <section>
+        <h3>Disclosure of Personal Information</h3>
+        <p>The disclosure involves two methods: selective disclosure and minimum disclosure, with the requirements as follows:</p>
+        <ol type="a">
+          <li>For the selective disclosure:
+            <ol>
+              <li>SPs shall specify the user information required for services under the minimum collection principle.</li>
+              <li>Terminals shall list the attributes that need and do not need to be presented by users before the VC presentation.</li>
+              <li>For non-required attributes, users can set whether to authorize disclosure at their discretion.</li>
+            </ol>
+          </li>
+          <li>For the minimum disclosure:
+            <ol>
+              <li>When building VCs, issuers shall specify the required attributes under the minimum disclosure principle.</li>
+              <li>SPs shall specify the attributes required for service operation under the minimum disclosure principle, and define the
+              scope.</li>
+              <li>Terminals should construct presentation attributes using the ZK-SNARK before the VC presentation.</li>
+              <li>When verifying VPs, SPs shall determine whether the corresponding attributes are required using the ZK-SNARK.</li>
+            </ol>
+          </li>
+        </ol>
+      </section>
+    </section>
+    <section>
+      <h2>Test Requirements</h2>
+       <section>
+        <h3>Protocol Standard Testing</h3>
+        <p>Full protocol standard testing needs to be carried out on DID documents, VCs, and VPs to ensure that: 1) DID documents
+        can present different authentication methods and cross-chain mutual recognition; 2) VCs can prove the attribute or right
+        of some statements of the corresponding holders; and 3) VPs can prove the corresponding holders' identities and present
+        a set of VCs to third parties.</p>
+        <section>
+          <h4>DID Document Protocol Testing</h4>
+          <p>The test method and expected result of the DID document protocol testing are as follows:</p>
+          <ol type="a">
+            <li>Test method: When the IDP generates a DID document, check whether the DID document complies with the IIFAA decentralized
+            trusted authentication standards.</li>
+            <li>Expected result: When the IDP generates a DID document, upon check, the DID document complies with the IIFAA
+            decentralized trusted authentication standards.</li>
+            <li>Result judgment: If the actual test result is the same as expected, the test is acceptable; otherwise, it is
+            unacceptable.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>VC Protocol Testing</h4>
+          <p>The test method and expected result of the VC protocol testing are as follows:</p>
+          <ol type="a">
+            <li>Test method: When the issuer generates a VC, check whether the VC complies with the IIFAA decentralized trusted
+            authentication standards.</li>
+            <li>Expected result: When the issuer generates a VC, upon check, the VC complies with the IIFAA decentralized trusted
+            authentication standards.</li>
+            <li>Result judgment: If the actual test result is the same as expected, the test is acceptable; otherwise, it is
+            unacceptable.</li>
+          </ol>
+        </section>
+        <section>
+          <h4>VP Protocol Testing</h4>
+          <p>The test method and expected result of the VP protocol testing are as follows:</p>
+          <ol type="a">
+            <li>Test method: When DID holder presents a VP, check whether the VP complies with the IIFAA decentralized trusted
+            authentication standards.</li>
+            <li>Expected result: When DID holder presents a VP, upon check, the VP complies with the IIFAA decentralized trusted
+            authentication standards.</li>
+            <li>Result judgment: If the actual test result is the same as expected, the test is acceptable; otherwise, it is
+            unacceptable.</li>
+          </ol>
+        </section>
+       </section>
+       <section>
+        <h3>Operating Environment Security Testing</h3>
+        <p>To protect the security and credibility of decentralized trusted authentication DID keys and user data, full security
+        testing needs to be carried out on the terminal environment where a decentralized trusted authentication system runs,
+        the key algorithms used, and the data protocols adopted.</p>
+        <section>
+          <h4>Terminal Environment Security Testing</h4>
+          <p>The test methods and expected results of the terminal environment security testing are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>Check whether DID keys are stored in a secure environment as stated in the DID document.</li>
+                <li>Check whether VCs are encrypted and stored.</li>
+              </ol>
+            </li>
+            <li>Expected results:
+              <ol>
+                <li>If DID document states SE storage, DID keys are generated and used in the security zone of the SE or SIM card on the
+                terminal.</li>
+                <li>If DID document states TEE storage, DID keys are generated and used in the TEE of the terminal.</li>
+                <li>VCs are encrypted and stored.</li>
+              </ol>
+            </li>
+            <li>Result judgment: If the actual test result is the same as expected, the test is acceptable; otherwise, it is
+            unacceptable.
+            </li>
+          </ol>
+        </section>
+        
+        <section>
+          <h4>Key Algorithm Security Testing</h4>
+          <p>The test methods and expected results of the key algorithm security testing are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>Check whether key algorithms such as SM2/ECC/RSA3072, SM4/AES, and SM3/SHA2 are supported.</li>
+                <li>Check whether keys are stored and used in a secure environment as stated in the DID document.</li>
+              </ol>
+            </li>
+            <li>Expected results:
+              <ol>
+                <li>If DID document states SE storage, related keys and algorithms run in the security zone of the SE or SIM card.</li>
+                <li>If DID document states TEE storage, related keys and algorithms run in the TEE of the terminal.</li>
+              </ol>
+            </li>
+            <li>Result judgment: If the actual test result is the same as expected, the test is acceptable; otherwise, it is unacceptable.
+              
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h4>Data Protocol Security Testing</h4>
+          <p>The test methods and expected results of the data protocol security testing are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>In the DID registration phase, verify whether the public key data and security environment statement generated on the
+                terminal are signed with the private keys of the corresponding security zone.</li>
+                <li>In the VC issuance phase, check whether VCs are issued after being encrypted with the private keys of the specified user
+                DID.</li>
+                <li>In the VC import phase, check whether VCs are encrypted and stored in a security zone as stated in the DID document.</li>
+                <li>In the VP issuance phase, check whether the VP data is encrypted with the DID keys of the designated service
+                organization.</li>
+              </ol>
+            </li>
+            <li>Expected results:
+              <ol>
+                <li>In the DID registration phase, the public key data and security environment statement generated on the terminal are
+                signed with the private keys of the corresponding security zone.</li>
+                <li>In the VC issuance phase, VCs are issued after being encrypted with the private keys of the specified user DID.</li>
+                <li>In the VC import phase, VCs are encrypted and stored in a security zone as stated in the DID document.</li>
+                <li>In the VP issuance phase, the VP data is encrypted with the DID keys of the designated service organization.</li>
+              </ol>
+            </li>
+            <li>Result judgment:
+            If the actual test result is the same as expected, the test is acceptable; otherwise, it is unacceptable.
+            </li>
+          </ol>
+        </section>
+      </section>
+      <section> 
+        <h3>Basic Function Testing</h3> 
+        <p>Decentralized trusted authentication is to build a decentralized identity authentication infrastructure with minimum
+        trust, high privacy protection, and efficient operation. Its basic functions include identity registration and
+        management, VC issuance and storage, and VP presentation, based on which, the test requirements are as follows sections.</p>
+        <section>
+          <h4>Registration and Management of Decentralized Identities</h4>
+          <p>The test methods and result judgment of the decentralized identity management procedure are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>During identity registration, check whether the keys on the terminal are generated properly.</li>
+                <li>During identity registration, check whether the private keys are stored according to security requirements.</li>
+                <li>During identity registration, check whether the public keys and corresponding decentralized identity documents are
+                stored on the blockchain.</li>
+                <li>During use, check whether identity authentication methods are available to verify the user's identity.</li>
+                <li>During identity deregistration, check whether the key information and the corresponding data on the blockchain are set
+                to "disabled" or "deleted".</li>
+              </ol>
+            </li>
+            <li>Expected results:
+              <ol>
+                <li>During identity registration, the keys on the terminal are generated properly.</li>
+                <li>During identity registration, the private keys on the terminal are stored securely according to security requirements.</li>
+                <li>During identity registration, the public keys and corresponding decentralized identity documents are stored on the
+                blockchain properly.</li>
+                <li>During use, identity authentication methods are available to verify the user's identity.</li>
+                <li>During identity deregistration, the key information and the corresponding data on the blockchain are set to disabled or
+                deleted.</li>
+              </ol>
+            </li>
+            <li>
+              Result judgment:
+              If the actual test result is the same as expected, the test is acceptable; otherwise, it is unacceptable.
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h4>VC Issuance and Storage</h4>
+          <p>The test methods and result judgment of the VC issuance and storage procedure are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>Check whether the VC issuance interface has the identity authentication capability.</li>
+                <li>Simulate the issuance process and test the issuer's key management and signature mechanisms to ensure that VCs can be
+                correctly signed, issued, encrypted, and then transmitted to the holders.</li>
+                <li>Check whether VCs can be decrypted properly with the user's private keys on the terminal and whether the VC data
+                integrity is compliant with the VC template requirements.</li>
+                <li>Check whether VCs can be stored securely and persistently on the terminal.</li>
+                <li>Check whether VC summaries and details can be queried properly on the terminal.</li>
+                <li>Check whether VCs can be normally canceled by the issuer.</li>
+              </ol>
+            </li>
+            <li>
+              <ol>
+                <li>As required by the issuer, the VC insurance interface has the identity authentication capability.</li>
+                <li>The data of the issued VCs are encrypted with the user's public keys and can be decrypted properly with the user's
+                private keys.</li>
+                <li>VCs are securely and persistently stored in the corresponding security zone on the terminal.</li>
+                <li>VC summaries and details can be queried properly on the terminal.</li>
+                <li>VCs can be normally canceled by the issuer.</li>
+              </ol>
+            </li>
+            <li>
+              Result judgment:
+              If the actual test result is the same as expected, the test is acceptable; otherwise, it is unacceptable.
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h4>VP Presentation</h4>
+          <p>The test methods and result judgment of the VP presentation procedure are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>Check whether VPs present relevant fields per the principle of minimal privacy disclosure to prevent any breach or abuse
+                of user information.</li>
+                <li>Check whether VPs are assembled according to the standard protocols, signed with the user's private keys, and encrypted
+                with service providers' public keys.</li>
+                <li>Check whether service providers can obtain the data presented by VCs through VPs.</li>
+              </ol>
+            </li>
+            <li>Expected results:
+              <ol>
+                <li>VPs present relevant fields per the principle of minimal privacy disclosure to prevent any breach or abuse of user
+                information.</li>
+                <li>VPs are assembled according to the standard protocols, signed with the user's private keys, and encrypted with service
+                providers' public keys.</li>
+                <li>Service providers can obtain the data presented by VCs through VPs.</li>
+              </ol>
+            </li>
+            <li>
+              Result judgment:
+              If the actual test result is the same as expected, the test is acceptable; otherwise, it is unacceptable.
+            </li>
+          </ol>
+        </section>
+       </section>
+       <section>
+        <h3>Performance and Stability Testing</h3>
+        <p>To ensure the user experience for decentralized trusted authentication and the reliability and stability of the system,
+        a performance test needs to be carried out on terminal keys, and performance and stability tests be conducted on the
+        service system.</p>
+        <section>
+          <h4>Key Performance Testing</h4>
+          <p>The test methods and expected results of the key performance security test are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>Trigger the terminal to generate DID keys for 100 cycles, and calculate the average time spent.</li>
+                <li>Sign data with the DID keys for 100 cycles, and calculate the average time spent.</li>
+                <li>Verify digital signatures with the DID keys for 100 cycles, and calculate the average time spent.</li>
+                <li>Encrypt data with the DID keys for 100 cycles, and calculate the average time spent.</li>
+                <li>Decrypt data with the DID keys for 100 cycles, and calculate the average time spent.</li>
+              </ol>
+            </li>
+            <li>Expected results:
+              <ol>
+                <li>When the terminal is triggered to generate DID keys for 100 cycles, all the cycles are executed successfully and the
+                average time spent is less than 200 ms.</li>
+                <li>When DID keys are used to sign data for 100 cycles, all the cycles are executed successfully and the average time spent
+                is less than 100 ms.</li>
+                <li>When DID keys are used to verify digital signatures for 100 cycles, all the cycles are executed successfully and the
+                average time spent is less than 100 ms.</li>
+                <li>When DID keys are used to encrypt data for 100 cycles, all the cycles are executed successfully and the average time
+                spent is less than 200 ms.</li>
+                <li>When DID keys are used to decrypt data for 100 cycles, all the cycles are executed successfully and the average time
+                spent is less than 200 ms.</li>
+              </ol>
+            </li>
+            <li>
+              Result judgment:
+              If the actual test result is the same as expected, the test is acceptable; otherwise, it is unacceptable.
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h4>Performance and Stability Testing of the Service System</h4>
+          <p>The test methods and expected results of the performance and stability tests of the service system are as follows:</p>
+          <ol type="a">
+            <li>Test methods:
+              <ol>
+                <li>Carry out stress test and stability test on the DID identities created by the IDP, and calculate the QPS and system
+                stability.</li>
+                <li>Carry out stress test and stability test on the DID identities queried by the IDP, and calculate the QPS and system
+                stability.</li>
+                <li>Carry out stress test and stability test on the VCs generated by the issuer, and calculate the QPS and system stability.</li>
+                <li>Carry out stress test and stability test on the VPs presented by service providers, and calculate the QPS and system
+                stability.</li>
+              </ol>
+            </li>
+            <li>
+              <ol>
+                <li>After the stress test and stability test are carried out on the DID identities created by the IDP, the results show that
+                the QPS is greater than 500 and the system stability is up to 99.9%.</li>
+                <li>After the stress test and stability test are carried out on the DID identities queried by the IDP, the results show that
+                the QPS is greater than 500 and the system stability is up to 99.9%.</li>
+                <li>After the stress test and stability test are carried out on the VCs generated by the issuer, the results show that the
+                QPS is greater than 500 and the system stability is up to 99.9%.</li>
+                <li>After the stress test and stability test are carried out on the VPs presented by service providers, the results show
+                that the QPS is greater than 500 and the system stability is up to 99.9%.</li>
+              </ol>
+            </li>
+            <li>
+            Result judgment:
+            If the actual test result is the same as expected, the test is acceptable; otherwise, it is unacceptable.
+            </li>
+          </ol>
+        </section>
+       </section>
+    </section>
+    <section>
+      <h2>Terms</h2>
+      <p class="ednote">any terms below overlay with W3C terms?</p>
+      <dt></dt>
+      <dd></dd>
+    </section>
+    <section class="appendix">
+      <h2>Reference</h2>
+      <p class="ednote">Fixed layout later.</p>
+<p>GB/T 35273 Information security technology – Personal information security specification
+GB/T 37036 (All parts) Information technology – Biometrics used with mobile devices
+GB/T 40660 Information security technology – General requirements for biometric information protection
+GB/T 41479 Information security technology – Network data processing security requirements
+GB/T 41819 Information security technology – Security requirements of face recognition data
+IIFAA Local Password-Free Technology Specification 2.0</p>
     </section>
   </body>
 </html>
