@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="ReSpec 35.1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    dfn {
+      cursor: pointer
+    }
+
+    .dfn-panel {
+      position: absolute;
+      z-index: 35;
+      min-width: 300px;
+      max-width: 500px;
+      padding: .5em .75em;
+      margin-top: .6em;
+      font-family: "Helvetica Neue", sans-serif;
+      font-size: small;
+      background: #fff;
+      background: var(--indextable-hover-bg, #fff);
+      color: #000;
+      color: var(--text, #000);
+      box-shadow: 0 1em 3em -.4em rgba(0, 0, 0, .3), 0 0 1px 1px rgba(0, 0, 0, .05);
+      box-shadow: 0 1em 3em -.4em var(--tocsidebar-shadow, rgba(0, 0, 0, .3)), 0 0 1px 1px var(--tocsidebar-shadow, rgba(0, 0, 0, .05));
+      border-radius: 2px
+    }
+
+.caption{margin-top:.5em;font-style:italic}
+table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
+.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
+.simple th a{color:#fff;padding:3px 5px;text-align:left}
+.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
+.simple td{padding:3px 10px;border-top:1px solid #ddd}
+.simple tr:nth-child(even){background:#f0f6ff}
+
+    .dfn-panel:not(.docked)>.caret {
+      position: absolute;
+      top: -9px
+    }
+
+    .dfn-panel:not(.docked)>.caret::after,
+    .dfn-panel:not(.docked)>.caret::before {
+      content: "";
+      position: absolute;
+      border: 10px solid transparent;
+      border-top: 0;
+      border-bottom: 10px solid #fff;
+      border-bottom-color: var(--indextable-hover-bg, #fff);
+      top: 0
+    }
+
+    .dfn-panel:not(.docked)>.caret::before {
+      border-bottom: 9px solid #a2a9b1;
+      border-bottom-color: var(--indextable-hover-bg, #a2a9b1)
+    }
+
+    .dfn-panel * {
+      margin: 0
+    }
+
+    .dfn-panel b {
+      display: block;
+      color: #000;
+      color: var(--text, #000);
+      margin-top: .25em
+    }
+
+    .dfn-panel ul a[href] {
+      color: #333;
+      color: var(--text, #333)
+    }
+
+    .dfn-panel>div {
+      display: flex
+    }
+
+    .dfn-panel a.self-link {
+      font-weight: 700;
+      margin-right: auto
+    }
+
+    .dfn-panel .marker {
+      padding: .1em;
+      margin-left: .5em;
+      border-radius: .2em;
+      text-align: center;
+      white-space: nowrap;
+      font-size: 90%;
+      color: #040b1c
+    }
+
+    .dfn-panel .marker.dfn-exported {
+      background: #d1edfd;
+      box-shadow: 0 0 0 .125em #1ca5f940
+    }
+
+    .dfn-panel .marker.idl-block {
+      background: #8ccbf2;
+      box-shadow: 0 0 0 .125em #0670b161
+    }
+
+    .dfn-panel a:not(:hover) {
+      text-decoration: none !important;
+      border-bottom: none !important
+    }
+
+    .spec-reference {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.9em;
+    color: #555;
+  }
+
+    .dfn-panel a[href]:hover {
+      border-bottom-width: 1px
+    }
+
+    .dfn-panel ul {
+      padding: 0
+    }
+
+    .dfn-panel li {
+      margin-left: 1em
+    }
+
+    .dfn-panel.docked {
+      position: fixed;
+      left: .5em;
+      top: unset;
+      bottom: 2em;
+      margin: 0 auto;
+      max-width: calc(100vw - .75em * 2 - .5em - .2em * 2);
+      max-height: 30vh;
+      overflow: auto
+    }
+  </style>
+
+
+  <title>IIFAA Decentralized Trusted Authentication Technical Specification - Part 1: General Requirements</title>
+
+  <style id="respec-mainstyle">
+    @keyframes pop {
+      0% {
+        transform: scale(1, 1)
+      }
+
+      25% {
+        transform: scale(1.25, 1.25);
+        opacity: .75
+      }
+
+      100% {
+        transform: scale(1, 1)
+      }
+    }
+
+    a.internalDFN {
+      color: inherit;
+      border-bottom: 1px solid #99c;
+      text-decoration: none
+    }
+
+    a.externalDFN {
+      color: inherit;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none
+    }
+
+    a.bibref {
+      text-decoration: none
+    }
+
+    .respec-offending-element:target {
+      animation: pop .25s ease-in-out 0s 1
+    }
+
+    .respec-offending-element,
+    a[href].respec-offending-element {
+      text-decoration: red wavy underline
+    }
+
+    @supports not (text-decoration:red wavy underline) {
+      .respec-offending-element:not(pre) {
+        display: inline-block
+      }
+
+      .respec-offending-element {
+        background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x
+      }
+    }
+
+    #references :target {
+      background: #eaf3ff;
+      animation: pop .4s ease-in-out 0s 1
+    }
+
+    cite .bibref {
+      font-style: normal
+    }
+
+    a[href].orcid {
+      padding-left: 4px;
+      padding-right: 4px
+    }
+
+    a[href].orcid>svg {
+      margin-bottom: -2px
+    }
+
+    ol.tof,
+    ul.tof {
+      list-style: none outside none
+    }
+
+    .caption {
+      margin-top: .5em;
+      font-style: italic
+    }
+
+    #issue-summary>ul {
+      column-count: 2
+    }
+
+    #issue-summary li {
+      list-style: none;
+      display: inline-block
+    }
+
+    details.respec-tests-details {
+      margin-left: 1em;
+      display: inline-block;
+      vertical-align: top
+    }
+
+    details.respec-tests-details>* {
+      padding-right: 2em
+    }
+
+    details.respec-tests-details[open] {
+      z-index: 999999;
+      position: absolute;
+      border: thin solid #cad3e2;
+      border-radius: .3em;
+      background-color: #fff;
+      padding-bottom: .5em
+    }
+
+    details.respec-tests-details[open]>summary {
+      border-bottom: thin solid #cad3e2;
+      padding-left: 1em;
+      margin-bottom: 1em;
+      line-height: 2em
+    }
+
+    details.respec-tests-details>ul {
+      width: 100%;
+      margin-top: -.3em
+    }
+
+    details.respec-tests-details>li {
+      padding-left: 1em
+    }
+
+    .self-link:hover {
+      opacity: 1;
+      text-decoration: none;
+      background-color: transparent
+    }
+
+    aside.example .marker>a.self-link {
+      color: inherit
+    }
+
+    .header-wrapper {
+      display: flex;
+      align-items: baseline
+    }
+
+    :is(h2, h3, h4, h5, h6):not(#toc>h2, #abstract>h2, #sotd>h2, .head>h2) {
+      position: relative;
+      left: -.5em
+    }
+
+    :is(h2, h3, h4, h5, h6):not(#toch2)+a.self-link {
+      color: inherit;
+      order: -1;
+      position: relative;
+      left: -1.1em;
+      font-size: 1rem;
+      opacity: .5
+    }
+
+    :is(h2, h3, h4, h5, h6)+a.self-link::before {
+      content: "§";
+      text-decoration: none;
+      color: var(--heading-text)
+    }
+
+    :is(h2, h3)+a.self-link {
+      top: -.2em
+    }
+
+    :is(h4, h5, h6)+a.self-link::before {
+      color: #000
+    }
+
+    @media (max-width:767px) {
+      dd {
+        margin-left: 0
+      }
+    }
+
+    @media print {
+      .removeOnSave {
+        display: none
+      }
+    }
+
+    .logo {
+      text-align: right;
+      right: 0;
+      width: 30px;
+      /* or any other width you want */
+      height: 20px;
+      /* or any other height you want */
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: flex-end;
+      /* or flex-start if you want them aligned left */
+    }
+
+    .logo-1,
+    .logo-2 {
+      float: right;
+      margin-left: 10px;
+    }
+  </style>
+
+
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="本文件规定了IIFAA分布式可信认证参考模型、技术架构和功能、业务流程、安全要求和个人信息保护要求。">
+  <style>
+    var {
+      position: relative;
+      cursor: pointer
+    }
+
+    var[data-type]::after,
+    var[data-type]::before {
+      position: absolute;
+      left: 50%;
+      top: -6px;
+      opacity: 0;
+      transition: opacity .4s;
+      pointer-events: none
+    }
+
+    var[data-type]::before {
+      content: "";
+      transform: translateX(-50%);
+      border-width: 4px 6px 0 6px;
+      border-style: solid;
+      border-color: transparent;
+      border-top-color: #222
+    }
+
+    var[data-type]::after {
+      content: attr(data-type);
+      transform: translateX(-50%) translateY(-100%);
+      background: #222;
+      text-align: center;
+      font-family: "Dank Mono", "Fira Code", monospace;
+      font-style: normal;
+      padding: 6px;
+      border-radius: 3px;
+      color: #daca88;
+      text-indent: 0;
+      font-weight: 400
+    }
+
+    var[data-type]:hover::after,
+    var[data-type]:hover::before {
+      opacity: 1
+    }
+  </style>
+  <div class="head">
+    
+    <script id="initialUserConfig" type="application/json">{
+  "specStatus": "CG-DRAFT",
+  "shortName": "iifaa-did",
+  "editors": [
+    {
+      "name": "null"
+    }
+  ],
+  "group": "cndid",
+  "publishISODate": "2024-07-25T00:00:00.000Z",
+  "generatedSubtitle": "Draft Community Group Report 25 January 2025"
+}</script>
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/cg-draft">
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1179.0" data-gr-ext-installed="" class="h-entry informative">
+
+
+
+
+  <h1 id="title" class="title">A Formal Security Analysis of IIFAA DID in Super Apps</h1>
+  <p id="w3c-state">
+    <a href="https://www.w3.org/standards/types#reports">Draft Community Group Report</a>
+    <time class="dt-published" datetime="2024-07-25">January 2025</time>
+  </p>
+  <dl>
+
+    <dt>Latest published version:</dt>
+    <dd>
+      <a href="https://w3c-cg.github.io/cndid/Formal_analysis_report">https://w3c-cg.github.io/cndid/Formal_analysis_report</a>
+    </dd>
+
+
+
+
+
+    <dt>Editor:</dt>
+    <dd class="editor p-author h-card vcard">
+      <span class="p-name fn">Ziyu Mao</span> (<a class="p-org org h-org">Zhejiang University, Ant Group</a>)
+    </dd>
+    <dd class="editor p-author h-card vcard">
+      <span class="p-name fn">Lin Huang</span> (<a class="p-org org h-org">Ant Group</a>)
+    </dd>
+    <dd class="editor p-author h-card vcard">
+      <span class="p-name fn">Jingyi Wang</span> (<a class="p-org org h-org">Zhejiang University</a>)
+    </dd>
+    <dd class="editor p-author h-card vcard">
+      <span class="p-name fn">Jingling Xue</span> (<a class="p-org org h-org">UNSW Sydney, Ant Group</a>)
+    </dd>
+  
+    </dd>
+
+
+
+
+  </dl>
+
+  <p class="copyright">
+    <a href="https://www.w3.org/policies/#copyright">Copyright</a>
+    ©
+    2024
+
+    the Contributors to the IIFAA Decentralized Trusted Authentication Technical Specification - Part 1: General Requirements
+    Specification, published by <a href="https://www.iifaa.org.cn/index">IIFAA</a> and
+    <a href="https://www.w3.org/groups/cg/cndid">Chinese DID &amp; VC Community Group</a> under the
+    <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+    A human-readable
+    <a href="https://www.w3.org/community/about/agreements/cla-deed/">summary</a>
+    is available.
+
+  </p>
+
+  <hr title="Separator for header">
+  
+  <!-- <div class="logo-container">
+    <a class="logo" href="https://www.iifaa.org.cn/index"><img class="logo-1" alt="IIFAA" height="88"
+        src="img/iifaa-logo.jpg" width="auto"></a>
+    <a class="logo" href="https://www.w3.org/community"><img class="logo-2" alt="W3C Community Group" height="68"
+        src="img/cgbg-logo.svg" width="auto" text-align: "right;></a>
+  </div> -->
+  </div>
+
+  <section id="abstract" class="introductory">
+    <h2>Abstract</h2>
+In this report, we present the automated formal analysis of a mobile-based Decentralized Identity (DID) protocol following the IIFAA DID standard. Embedded in the widely used super app Alipay, this protocol has issued millions of DIDs. Despite the IIFAA standard's similarity to other informal DID standards written in native languages, we formalized it within the super app environment and defined five critical security goals based on relevant standards and implementation documents. Using the state-of-the-art protocol verifier Tamarin, we assessed IIFAA DID under a realistic, super-app-specific threat model. Our analysis and findings provide key recommendations and insights for strengthening DID security.
+<!-- and our open-source symbolic model supports future formal analyses of similar systems.   -->
+  </section>
+  <section id="sotd" class="introductory">
+    <h2>Status of This Document</h2>
+    <p>
+    </p>
+
+   <nav id="toc">
+  <h2 class="introductory" id="table-of-contents">Table of Contents</h2>
+  <ol class="toc">
+    <li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a></li>
+    
+    <li class="tocline"><a class="tocxref" href="#background"><bdi class="secno">2. </bdi>Background</a>
+      <ol class="toc">
+        <li class="tocline"><a class="tocxref" href="#decentralized-identities"><bdi class="secno">2.1 </bdi>Decentralized Identities</a></li>
+        <li class="tocline"><a class="tocxref" href="#super-apps"><bdi class="secno">2.2 </bdi>Super Apps</a></li>
+      </ol>
+    </li>
+
+    <li class="tocline"><a class="tocxref" href="#threat-model"><bdi class="secno">3. </bdi>Threat Model</a>
+      <ol class="toc">
+        <li class="tocline"><a class="tocxref" href="#threat-model"><bdi class="secno">3.1 </bdi>Assumptions.</a></li>
+      </ol>
+    </li>
+
+    <li class="tocline"><a class="tocxref" href="#formal-model"><bdi class="secno">4. </bdi>Formal Model of DID</a>
+      <ol class="toc">
+        <li class="tocline"><a class="tocxref" href="#protocol-extraction"><bdi class="secno">4.1 </bdi>Protocol Extraction</a></li>
+        <li class="tocline"><a class="tocxref" href="#protocol-modeling"><bdi class="secno">4.2 </bdi>Abstraction and Modeling</a></li>
+      </ol>
+    </li>
+
+    <li class="tocline"><a class="tocxref" href="#security-goals"><bdi class="secno">5. </bdi>Security Goals</a></li>
+
+    <li class="tocline"><a class="tocxref" href="#recommendations"><bdi class="secno">6. </bdi>Recommendations, Lessons and Insights</a>
+      <ol class="toc">
+        <li class="tocline"><a class="tocxref" href="#proof-effort"><bdi class="secno">6.1 </bdi>Proof Effort</a></li>
+        <li class="tocline"><a class="tocxref" href="#security-recommendations"><bdi class="secno">6.2 </bdi>Security Recommendations</a></li>
+        <li class="tocline"><a class="tocxref" href="#lessons-and-insights"><bdi class="secno">6.3 </bdi>Lessons and Insights</a></li>
+      </ol>
+    </li>
+
+    <li class="tocline"><a class="tocxref" href="#conclusion"><bdi class="secno">7. </bdi>Conclusion</a></li>
+  </ol>
+</nav>
+
+
+<section id="introduction">
+  <div class="header-wrapper">
+    <h2 id="x1-introduction">
+      <bdi class="secno">1. </bdi>Introduction
+    </h2>
+    <a class="self-link" href="#introduction" aria-label="Permalink for Section 1."></a>
+  </div>
+
+
+ <p>Decentralized Identity (DID) enhances authentication and security by shifting control from centralized entities to individuals, ensuring greater privacy and autonomy. This model relies on two principles: (1) users independently manage their cryptographic keys, eliminating third-party reliance, and (2) secure verification occurs through <i>verifiable credentials</i> (VCs) [<cite><a class="bibref" href="#bib-oid4vc">OID4VC</a></cite>] issued by trusted issuers and <i>verifiable presentations</i> (VPs) [<cite><a class="bibref" href="#bib-oid4vp">OID4VP</a></cite>] enabling selective disclosure (of claims in VCs). A DID document serves as a unique identifier, functioning without centralized registries and promoting user-centric identity management.</p>
+
+<p>Since 2017, real-world DID adoption has gained traction globally, with pilot application and standardization efforts such as Microsoft's Entra Verified ID [<cite><a class="bibref" href="#bib-mevid">MEVID</a></cite>], BSN DID in China [<cite><a class="bibref" href="#bib-bsndid">BSNDID</a></cite>], and the European Digital Identity Regulation [<cite><a class="bibref" href="#bib-eidas">eIDAS</a></cite>]. IIFAA [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>], a trusted authentication alliance in China, has played a key role in securing DID implementations. Its technical standard, compatible with Trusted Execution Environments (TEE) and Secure Elements (SE), has been adopted across 1.6 billion devices, 43 phone brands, and 900 models worldwide [<cite><a class="bibref" href="#bib-iifaawebsite">IIFAAWebsite</a></cite>].</p>
+
+<p>Mobile-based services, especially within super apps like Alipay and WeChat, are rapidly growing. By hosting diverse services via mini-programs, these apps enable seamless interactions and robust private identity management, making them well-suited for DID integration.</p>
+
+
+
+  <p><strong>Security Concerns.</strong>  
+  As DID adoption grows, security concerns—such as protecting users' personal data [<cite><a class="bibref" href="#bib-vc-data-integrity-1.0">VC-Data-Integrity-1.0</a></cite>]—are increasingly relevant, especially as standards continue to evolve. Protocols like DIDComm v2.0 [<cite><a class="bibref" href="#bib-didcomm">DIDComm</a></cite>] enhance encryption and messaging, while OIDC4VC [<cite><a class="bibref" href="#bib-oid4vc">OID4VC</a></cite>] expands support for credential issuance and selective disclosure. However, fragmented DID standards [<cite><a class="bibref" href="#bib-verifyssi">Braun2024</a></cite>] pose security challenges. To address these, the W3C Threat Modeling Community Group (TMCG) launched in July 2024 to develop threat models. Their initial GitHub draft [<cite><a class="bibref" href="#bib-w3c_threat_modeling_did">W3C-threat-modeling</a></cite>] applies Adam Shostack's four-question framework [<cite><a class="bibref" href="#bib-shostack_4questionframe">Shostack-4-question</a></cite>] for high-level security analysis. While insightful, these efforts provide only a broad overview, lacking the depth for systematic vulnerability assessment.
+  </p>
+  
+  <p><strong>Motivation for Formal Analysis.</strong>
+  Industry security audits rely on established methodologies and expert reviews. To improve rigour and consistency, we conduct the first in-depth formal analysis of a real-world IIFAA application, focusing on its mobile-based integration within Alipay. Using <em>symbolic analysis</em>, we clarify informal DID specifications, identify implicit security assumptions, and verify claimed security properties, despite the IIFAA standard's informal, native-language format, similar to other standards [<cite><a class="bibref" href="#bib-mevid">MEVID</a></cite>, <cite><a class="bibref" href="#bib-bsndid">BSNDID</a></cite>, <cite><a class="bibref" href="#bib-eidas">eIDAS</a></cite>]. Moreover, as noted in [<cite><a class="bibref" href="#bib-w3c_threat_modeling_did">W3C-threat-modeling</a></cite>], the threat model is a living document, requiring security analysis tailored to specific contexts. Therefore, we develop a super-app-specific threat model to ensure a more precise and relevant assessment. This analysis contributes to standard refinement and enhances security in real-world deployments.
+  </p>
+
+  <p><strong>Related Work.</strong>
+  Recent studies have applied formal methods to analyze the security of DID-related protocols. Hauck [<cite><a class="bibref" href="#bib-verifyOID4VC">verifyOID4VC</a></cite>] examined OpenID for VC Issuance [<cite><a class="bibref" href="#bib-oid4vc">OID4VC</a></cite>] and VPs [<cite><a class="bibref" href="#bib-oid4vp">OID4VP</a></cite>] using the Web Infrastructure Model (WIM). However, this pen-and-paper analysis relies on expertise, lacks automation, and covers limited aspects of communication protocols in DID applications. Badertscher et al. [<cite><a class="bibref" href="#bib-verifyDIDComm">Badertscher2024</a></cite>] conducted the first formal analysis of DIDComm's cryptographic foundations, confirming its anonymity and authenticity while proposing protocol improvements. Braun et al. [<cite><a class="bibref" href="#bib-verifyssi">verifySSI</a></cite>] analyzed a self-constructed protocol based on SSI specifications. While comprehensive in modeling a DID application's workflow, it remains abstract, relying on a limited Dolev-Yao threat model [<cite><a class="bibref" href="#bib-delvoyao">DolevYao</a></cite>] and overlooking the varied ways VPs can be derived from VCs, potentially missing real-world attack vectors.
+  </p>
+
+  <p><strong>Challenges.</strong>
+  This work bridges the gap between formal analysis and practical implementations by systematically analyzing IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] within Alipay using <em>Tamarin</em> [<cite><a class="bibref" href="#bib-tamarin">Tamarin</a></cite>] while preserving fine-grained details in our model. Two key challenges arise: (1) Like other DID standards [<cite><a class="bibref" href="#bib-mevid">MEVID</a></cite>, <cite><a class="bibref" href="#bib-bsndid">BSNDID</a></cite>, <cite><a class="bibref" href="#bib-eidas">eIDAS</a></cite>], IIFAA DID lacks a detailed specification, providing only a high-level workflow [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>], which complicates comprehensive modeling, and (2) The complexity of super apps like Alipay poses significant challenges to both formal modeling and verification in <em>Tamarin</em>.
+  </p>
+
+  <p><strong>Our Approach.</strong>
+  To address these challenges, we first align the IIFAA standard [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] with its implementation in Alipay, adding necessary details for a comprehensive formal model. Next, we define security goals using first-order logic (FOL). This is the in-depth analysis of the IIFAA DID standard under a threat model tailored to super apps.
+  </p>
+
+  <p><strong>Contributions.</strong>
+  Super apps, likened to operating systems, integrate multiple services seamlessly. DID enables a unified, secure identity across these services. Within super apps, access control and cryptographic protocols interact with the DID infrastructure on behalf of mini-programs, introducing new security implications and the need for a dedicated threat model. This report presents the first symbolic model capturing super app and mini-program features under a realistic threat model, enabling a systematic analysis of DID security risks.
+</p>
+
+<p>In this analysis work, we make the following contributions:</p>
+<ol>
+  <li><strong>Formal Model of DID.</strong> We develop a symbolic model of IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] in Alipay, capturing key super app features under a tailored threat model.</li>
+  <li><strong>Formalized Security Goals.</strong> We define five key security goals by extracting specifications from the IIFAA standard and W3C documents.</li>
+  <li><strong>Security Risks, Recommendations, and Insights.</strong> Using <em>Tamarin</em> [<cite><a class="bibref" href="#bib-tamarin">Tamarin</a></cite>], we validate security claims and identify three potential risks. Our findings provide recommendations and insights into strengthening DID security in real-world deployments.</li>
+</ol>
+
+<!-- <p><strong>Open-Source.</strong>
+  Our <em>Tamarin</em> model, along with formal security definitions and proofs, is publicly available on <code>GitHub</code> [<cite><a class="bibref" href="#bib-artifact">Artifact</a></cite>].
+</p> -->
+
+</section>
+
+
+<section id="background">
+  <div class="header-wrapper">
+    <h2 id="x2-background">
+      <bdi class="secno">2. </bdi>Background
+    </h2>
+    <a class="self-link" href="#background" aria-label="Permalink for Section 2."></a>
+  </div>
+
+  <p>We provide an overview of DID systems, then discuss super apps and their integration with DID technologies.</p>
+
+  <section id="decentralized-identities">
+    <div class="header-wrapper">
+      <h3 id="x2-1-decentralized-identities">
+        <bdi class="secno">2.1 </bdi>Decentralized Identities
+      </h3>
+      <a class="self-link" href="#decentralized-identities" aria-label="Permalink for Section 2.1"></a>
+    </div>
+
+    <p>
+      A <em>DID Document</em> is a key component of decentralized identity, containing <em>claims</em> (attributes), cryptographic keys, authentication protocols, and service endpoints. These elements enable identity verification and secure communication.
+    </p>
+
+    <p>
+      A DID system facilitates credential issuance, authentication, and verification among three roles: <em>holder</em>, <em>issuer</em>, and <em>verifier</em>. 
+      Note that <em>verifier</em> corresponds to the <em>Service Provider (SP)</em> in the original IIFAA Decentralized Authentication Technical Specification [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>].
+      The issuer issues a <em>verifiable credential</em> (VC) to the holder, who later generates a <em>verifiable presentation</em> (VP) for the verifier. A key feature, <em>selective disclosure</em>, allows the holder to share only necessary claims while protecting other personal information.
+    </p>
+
+    <p>
+      A VC is a cryptographically secured digital certificate linking a holder to verified attributes. It contains three components: (1) <code>Meta</code> (metadata like validity dates), (2) <code>Claims</code> (verifiable information), and (3) <code>proof<sub>VC</sub></code> (a cryptographic proof ensuring integrity and issuer authenticity).
+    </p>
+
+    <p>
+      A VP is a cryptographically signed document compiled by the holder, containing one or more VCs. It proves credential possession while enabling selective disclosure. Like a VC, it includes <code>proof<sub>VP</sub></code> to ensure integrity and authenticity, allowing verifiers to trust the claims without contacting the issuer.
+    </p>
+  </section>
+
+  <section id="super-apps">
+    <div class="header-wrapper">
+      <h3 id="x2-2-super-apps">
+        <bdi class="secno">2.2 </bdi>Super Apps
+      </h3>
+      <a class="self-link" href="#super-apps" aria-label="Permalink for Section 2.2"></a>
+    </div>
+
+    <p>
+      A <em>super app</em> like Alipay hosts multiple mini-programs, offering diverse services through a unified interface. It consists of a frontend client on the phone and a backend server operated by the super app developer, while each mini-program has its own frontend client and remote backend server. In a DID protocol within a super app, the holder, issuer, and verifier roles map to the super app client (securely managing private keys and credentials in trusted environments like TEE), the mini-program client, and the mini-program server, respectively.
+    </p>
+
+    <p>Consider a mini-program on Alipay. The four entities interact as follows:</p>
+    <ol>
+      <li><strong>Alipay Client</strong> manages mini-program lifecycle, integrity, authentication, and permissions, providing APIs for interaction with Alipay's lower-layer services.</li>
+      <li><strong>Alipay Server</strong> handles user management, API interactions, and service implementation for the Alipay client.</li>
+      <li><strong>Mini-Program Client</strong>, developed using web technologies, interacts with the Alipay client via JSAPI [<cite><a class="bibref" href="#bib-alipayjsapi">AlipayJSAPI</a></cite>] and communicates with its server over TLS.</li>
+      <li><strong>Mini-Program Server</strong>, maintained by its developer, processes business logic and data while adhering to Alipay's security standards. It communicates with the Alipay server via OpenAPI [<cite><a class="bibref" href="#bib-OpenAPISignature">OpenAPI</a></cite>], enforcing mutual message signing for authentication and data integrity.</li>
+    </ol>
+
+    <p>
+      Mini-program integrity is ensured through signature verification. Upon release, the platform signs the mini-program code and configuration file (generated by the Alipay Server). The Alipay client verifies this signature before execution.
+    </p>
+
+    <p>
+      JSAPI access control rules are defined in the mini-program's configuration file. DID-related JSAPIs or plugins require explicit permission, granted only to enterprise mini-programs after a business contract. As a result, multiple mini-programs can access DID services on a holder's device, but the JSAPI link lacks additional encryption and integration protection.
+    </p>
+  </section>
+</section>
+
+
+<section id="threat-model">
+  <div class="header-wrapper">
+    <h2 id="x3-threat-model">
+      <bdi class="secno">3. </bdi>Threat Model
+    </h2>
+    <a class="self-link" href="#threat-model" aria-label="Permalink for Section 3."></a>
+  </div>
+
+  <p>
+    Our threat model, tailored for super apps, extends the Dolev-Yao model, where an adversary can intercept, modify, and inject messages over public channels. Additionally, we consider:
+  </p>
+
+  <ol>
+    <li><strong>Hooks in Mobile Apps.</strong> Clients are inherently insecure and may be compromised, exposing JSAPI calls between mini-programs and the super app.</li>
+    <li><strong>Private Key Leakage.</strong> Many mini-programs hardcode their private keys (or master keys in WeChat [<cite><a class="bibref" href="#bib-zhang2023don">Zhang2023</a></cite>]) in their frontends, risking exposure. Similarly, DID secret keys may also be leaked.</li>
+  </ol>
+
+  <p><strong>Assumptions.</strong><br>
+    IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] is a high-level protocol relying on TLS and OAuth [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>]. Following [<cite><a class="bibref" href="#bib-SOAP">SOAP</a></cite>], we assume such protocols are secure, and adversaries are constrained by cryptographic primitives. In addition, TLS sessions and the super app server remain uncompromised.
+  </p>
+</section>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+
+
+
+<section id="formal-model">
+  <div class="header-wrapper">
+    <h2 id="x4-background">
+      <bdi class="secno">4. </bdi>Formal Model of DID
+    </h2>
+    <a class="self-link" href="#formal-model" aria-label="Permalink for Section 4."></a>
+  </div>
+
+  <section id="protocol-extraction">
+  <div class="header-wrapper">
+    <h3 id="x4-1-protocol-extraction">
+      <bdi class="secno">4.1 </bdi>Protocol Extraction
+    </h3>
+    <a class="self-link" href="#protocol-extraction" aria-label="Permalink for Section 4.1"></a>
+  </div>
+
+
+   <figure id="iifaa-did-overview">
+  <img style="margin: auto; display: block; width: 75%;" 
+       src="./images/overview.jpg" 
+       alt="IIFAA DID: VC issuance and VP verification phases. MP Client and MP Server stand for Mini-Program Client and Mini-Program Server, respectively."
+       height="auto">
+  <figcaption>
+    Figure <bdi class="figno">1:</bdi> 
+    <span class="fig-title">
+      IIFAA DID: <code>VC</code> issuance and <code>VP</code> verification phases. 
+      <em>MP Client</em> and <em>MP Server</em> stand for Mini-Program Client and Mini-Program Server, respectively.
+    </span>
+  </figcaption>
+</figure>
+
+
+    <p>
+  Like other DID standards [<cite><a class="bibref" href="#bib-mevid">MEVID</a></cite>, <cite><a class="bibref" href="#bib-bsndid">BSNDID</a></cite>, <cite><a class="bibref" href="#bib-eidas">eIDAS</a></cite>], IIFAA [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] is informal and written in a native language. Figure 1 outlines its implementation in Alipay for a specific mini-program on the platform. We distilled the protocol into two sub-protocols—<em>VC Issuance</em> and <em>VP Verification</em>—by manually reviewing the IIFAA standard [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] and Alipay implementation documents.  
+  The procedures "VC Construction” and "VP Construction” will be referenced in Section <a href="#protocol-modeling">4.2</a>.
+  </p>
+
+  <p>
+  As described in Section <a href="#super-apps">2.2</a>, the Alipay client acts as the holder, managing private keys and credentials in a trusted environment (TEE) via services provided by the Alipay server. The mini-program's client (frontend) and server (backend server) function as the issuer for VC issuance and the verifier for VP verification. Message exchanges primarily rely on JSAPI calls and TLS.
+  </p>
+
+
+  </section>
+
+  <section id="protocol-modeling">
+  <div class="header-wrapper">
+    <h3 id="x4-2-protocol-modeling">
+      <bdi class="secno">4.2 </bdi>Abstraction and Modeling
+    </h3>
+    <a class="self-link" href="#protocol-modeling" aria-label="Permalink for Section 4.2"></a>
+  </div>
+
+  <p>
+    Our formal model covers the following aspects of IIFAA:  
+    (1) initialization,  
+    (2) VC Issuance,  
+    (3) VP Verification,  
+    (4) SD-JWT Data Format,  
+    (5) TLS and JSAPI Calls, and  
+    (6) Adversary Capabilities.
+  </p>
+
+  <p><strong>Initialization.</strong>
+    The protocol starts by initializing a mini-program within a user's Alipay app using the multiset rewriting rule (MSR):
+  </p>
+
+<div class="example" id="example-miniprogram-register">
+  <div class="marker">
+    <a class="self-link" href="#example-miniprogram-register">Example <bdi>MiniProgram-Register</bdi></a>
+  </div>
+  <pre class="nohighlight"><code class="language-tamarin">
+rule MiniprogramRegister:
+  [ Fr(~appid), Fr(~openid), Fr(~k),
+    !SuperApp(name, phoneNumber, userid) ]
+  --[ MiniprogramReg($A, userid, ~appid)]->
+  [ !MiniProgram($A, ~openid, ~appid), 
+    !MLTK($A, ~k), !MPK($A, pk(~k)) ] 
+  </code></pre>
+</div>
+
+
+  <p>
+    A variable is fresh if prefixed by <code>~</code> and public if prefixed by <code>$</code>. To enhance privacy, the Alipay client anonymizes <code>userid</code> across mini-programs, replacing it with <code>openid</code> [<cite><a class="bibref" href="#bib-alipay_docs">Alipay-Docs</a></cite>] to prevent tracking. Each registered mini-program has a unique <code>appid</code>. Upon registration, a persistent key pair (<code>!MLTK</code>, <code>!MPK</code>) is generated, with <code>!MPK</code> stored in the DID document for signature verification. The identifier <code>$A</code> denotes the mini-program's role, either <code>$issuer</code> or <code>$verifier</code>.
+  </p>
+
+  <p><strong>VC Issuance.</strong>
+  As shown in Figure 1, the Alipay user requests a <span id="math">\( \texttt{VC} \)</span> via the mini-program frontend and receives it upon issuance. 
+  The process involves: (i) verifying the holder's claims and (ii) constructing the <span id="math">\( \texttt{VC}.\)</span> 
+</p>
+
+  <p>
+    User information (e.g., name and age) is stored on the Alipay server and accessed via OAuth 2.0 [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>], specifically the authorization code flow. Upon user consent, Alipay generates an authorization code (<code>AuthCode</code>) for the mini-program, which exchanges it for a short-lived access token to retrieve user data. Following [<cite><a class="bibref" href="#bib-AuthCodeModel">AuthCodeModel</a></cite>], we abstract this process, modeling only the TLS exchange between the mini-program's server and Alipay servers.
+  </p>
+
+  <p>
+    According to the basic user information, the issuer generates the claims about this user (e.g., student of Zhejiang Univ.), then constructs a VC based on the W3C standard [<cite><a class="bibref" href="#bib-vc-data-integrity-1.0">VC-Data-Integrity-1.0</a></cite>]. We model <code>SD-JWT</code> [<cite><a class="bibref" href="#bib-sdjwt">sdjwt</a></cite>], which enables selective disclosure in a JSON-encoded structure within a JWS payload, aligning with [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>].
+  </p>
+
+
+
+<p>
+  As shown in Figure 1, the "VC Construction" process works as follows:  
+  <span id="math">\( \texttt{C} = \{c_1, \dots, c_n\} \)</span> denotes all claims available,  
+  <span id="math">\( \texttt{digest} \)</span> represents the concatenation of their hashes, and  
+  <span id="math">\( \texttt{sigJWT} \)</span> is the concatenation of 
+  <span id="math">\( \texttt{digest} \)</span> and its issuer-signed value using the private key 
+  <span id="math">\( \mathsf{sk}_{\texttt{I}} \)</span>.  
+  For secure transmission to the Alipay client, the VC is encrypted with an envelope key in practice.
+  In contrast, the IIFAA technical specification specifies encryption using the holder's DID public key.
+  <!-- Detailed message formatting is provided in our formal model [<cite><a class="bibref" href="#bib-artifact">Artifact</a></cite>]. -->
+</p>
+
+
+  <p><strong>VP Verification.</strong>
+    As shown in Figure 1, a VP verification request originates from the mini-program frontend. The Alipay client, as the holder, constructs the VP using a single VC stored in TEE on the device (see Section <a href="#threat-model">3</a>).
+  </p>
+
+  <p>
+  During "VP Construction", the holder selects claims 
+  <span id="math">\( \texttt{D} = \{c_{i_1}, \dots, c_{i_k}\} \)</span> from 
+  <span id="math">\( \texttt{C} = \{c_1, \dots, c_n\} \)</span>, excluding private claims 
+  <span id="math">\( \texttt{C} \setminus \texttt{P} \)</span>, to form 
+  <span id="math">\( \texttt{VC}' \)</span>. The holder signs <span id="math">\( \texttt{VC}' \)</span> with their private key 
+  <span id="math">\( \mathsf{sk}_{\texttt{H}} \)</span>, generating 
+  <span id="math">\( \texttt{sigH} \)</span> as proof of origin. The verifier checks 
+  <span id="math">\( \texttt{sigH} \)</span> with the holder's public key 
+  <span id="math">\( \mathsf{pk}_{\texttt{H}} \)</span>, verifies 
+  <span id="math">\( \texttt{sigJWT} \)</span> using the issuer's public key 
+  <span id="math">\( \mathsf{pk}_{\texttt{I}} \)</span> for authenticity, and confirms 
+  <span id="math">\( \texttt{D} \)</span> matches its hash in <span id="math">\( \texttt{digest} \)</span>.
+</p>
+
+<p>
+  We model a term structure in <em>Tamarin</em> using the tuple operator 
+  <span id="math">\( \langle \cdot \rangle \)</span> and multiset union 
+  <span id="math">\( + \)</span>. The associative and commutative properties of 
+  <span id="math">\( + \)</span> enable selective disclosure modeling via the subterm relation 
+  <span id="math">\( \sqsubset \)</span> [<cite><a class="bibref" href="#bib-subterm">Cremers2023</a></cite>].
+</p>
+
+
+<p><strong>SD-JWT Data Format.</strong>
+  <code>SD-JWT</code> [<cite><a class="bibref" href="#bib-sdjwt">sdjwt</a></cite>] is a composite JSON-encoded JWS structure enabling selective disclosure. 
+  By separating claims during VC issuance (as shown in the "VC Construction" process in Figure 1, 
+  its signature proof remains valid even when some claims are selectively removed.
+</p>
+
+<p><strong>TLS and JSAPI Calls.</strong>
+  TLS secures communication between mini-program servers and the Alipay server (10 rules), while JSAPI calls enable interactions between 
+  mini-program clients and the Alipay client (4 rules).
+</p>
+
+<p><strong>Adversary Capabilities.</strong>
+  We define 10 rules to model adversary capabilities for handling mobile app hooks and private key leakage 
+  (see Section <a href="#threat-model">3</a>).
+</p>
+</section>
+
+</section>
+
+
+<section id="security-goals">
+  <div class="header-wrapper">
+    <h2 id="x5-security-goals">
+      <bdi class="secno">5. </bdi>Security Goals
+    </h2>
+    <a class="self-link" href="#security-goals" aria-label="Permalink for Section 4."></a>
+  </div>
+
+  <p>
+    Security requirements in DID systems have been informally discussed across various ecosystems 
+    [<cite><a class="bibref" href="#bib-mevid">MEVID</a></cite>, 
+    <cite><a class="bibref" href="#bib-bsndid">BSNDID</a></cite>, 
+    <cite><a class="bibref" href="#bib-eidas">eIDAS</a></cite>, 
+    <cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>]. 
+    TMCG [<cite><a class="bibref" href="#bib-w3c_threat_modeling_did">W3C-threat-modeling</a></cite>] identifies risks through high-level <em>evil stories</em>, 
+    such as a verifier over-collecting data from holders or an issuer tracking holders. 
+    In a recent work, Braun et al. [<cite><a class="bibref" href="#bib-verifyssi">Braun2024</a></cite>] 
+    formalize authentication lemmas for requirements like 
+    <em>the holder presented a credential to the intended verifier</em> 
+    but lack clear mappings to security properties like secrecy or integrity.
+  </p>
+
+  <p>
+    To address this, we refine incomplete specifications and vague formalizations with clear definitions and FOL formulas in 
+    <em>Tamarin</em> [<cite><a class="bibref" href="#bib-tamarin">Tamarin</a></cite>] for five security goals, supporting the formal analysis of IIFAA 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] in Alipay. 
+    <!-- The eight supporting lemmas are detailed in our open-source artifact [<cite><a class="bibref" href="#bib-artifact">Artifact</a></cite>] under <code>DIDSuperApp.spthy</code>. -->
+  </p>
+
+  <p><strong>Executability.</strong>
+    We validate our model (see Section <a href="#formal-model">5</a>) by defining a lemma that ensures legal executions without an adversary, 
+    preventing modeling errors.
+  </p>
+
+  <p>
+  <strong>Goal 1. Secrecy.</strong>
+  <em>Undisclosed data and issued credentials must remain private.</em>
+  <small class="spec-reference">See: Section 5.2a “Encryption Communication” in 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>]
+  </small>
+    We define secrecy as ensuring that private claims are not revealed, even to honest verifiers or third parties. 
+    Our formalization guarantees that undisclosed data and credentials are inaccessible to the Dolev-Yao adversary 
+    [<cite><a class="bibref" href="#bib-delvoyao">DolevYao</a></cite>].
+    We use the following FOL to formalize the secrecy of a VC:
+  </p>
+
+  <div id="math-block">
+    <p>
+      <span id="math">
+        \( 
+        \forall\ \mathit{uid},\ \texttt{VC},\ t_1.\ \mathsf{StoreVC}(\mathit{uid},\ \texttt{VC}) \in \alpha_{t_1}
+        \Rightarrow 
+        \lnot(\exists\ t_2,\ \mathit{uid}.\ \mathsf{K}(\texttt{VC}) \in \alpha_{t_2})
+        \)
+      </span>
+    </p>
+  </div>
+
+  <p>
+    The formula states that once there exists a record of a user 
+  <span id="math">\( \mathit{uid} \)</span> storing a verifiable credential 
+  <span id="math">\( \texttt{VC} \)</span> at time 
+  <span id="math">\( t_1 \)</span> (i.e., 
+  <span id="math">\( \mathsf{StoreVC}(\mathit{uid},\ \texttt{VC}) \in \alpha_{t_1} \)</span>), 
+  then it must <strong>never</strong> be the case that there exists a time point
+  <span id="math">\( t_2 \)</span> at which the adversary knows the content of 
+  <span id="math">\( \texttt{VC} \)</span> (i.e., 
+  <span id="math">\( \mathit{uid}.\mathsf{K}(\texttt{VC}) \in \alpha_{t_2} \)</span>).
+  </p>
+
+
+
+<p>
+  <strong>Goal 2. Integrity.</strong>
+  <em>A credential must originate from the intended issuer and remain unmodified.</em>
+  <small class="spec-reference">See: Section 5.2.e “Data integrity” in 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>]
+  </small>
+  This ensures that an issued credential cannot be forged or altered. Formally, we model integrity as non-injective authentication.
+</p>
+
+<div id="math-block">
+  <span id="math">
+    \[
+      \forall\ \texttt{VP},\ v,\ id,\ t_1.\ 
+      \mathsf{StoreVC}(uid, \texttt{VC}) \in \alpha_{t_1}
+      \Rightarrow 
+      (\exists\ t_2,\ aid.\ \mathsf{IssueVC}(aid, \texttt{VC}) \in \alpha_{t_2} \land t_2 < t_1)
+    \]
+  </span>
+</div>
+
+<p>
+    <strong>Goal 3. Injective Agreement.</strong>
+  <em>Each verifier-approved VP should correspond to a unique VP request.</em>
+  <small class="spec-reference">See: Section 5.2.d “Anti-replay” in 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>]
+  </small>
+  This prevents replay attacks and ensures that only a legitimate holder can generate a valid VP.
+</p>
+
+<div id="math-block">
+  <span id="math">
+    \[
+      \begin{aligned}
+        \forall\ \texttt{VP},\ v,\ id,\ t_1.\ 
+        &\mathsf{PassVerify}(aid, \texttt{VP}) \in \alpha_{t_1} \Rightarrow \\
+        &\left(
+          \begin{aligned}
+            &\exists\ t_2,\ uid.\ \mathsf{HolderPresent}(uid, \texttt{VP}) \in \alpha_{t_2} \land t_2 < t_1\ \land\\
+            &\lnot(\exists\ t_3,\ \mathit{aid'}.\ \mathsf{PassVerify}(\mathit{aid'}, \texttt{VP}) \in \alpha_{t_3} \land t_1 \ne t_3)\ \land\\
+            &\lnot(aid = \mathit{aid'})
+          \end{aligned}
+        \right)
+      \end{aligned}
+    \]
+  </span>
+</div>
+
+
+<p>
+  <strong>Goal 4. Legal Presentation.</strong>
+  <em>The “wallet” presenting a VC must be the one to which it was issued.</em>
+  <small class="spec-reference">See: Section 5.2.b “Two-way authentication” in 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>]
+  </small>
+  This requirement strengthens authentication by ensuring a one-to-one mapping between a VC and its designated holder, preventing unauthorized use of issued credentials.
+</p>
+
+<div id="math-block">
+  <span id="math">
+    \[
+      \forall\ \mathit{user},\ t_1.\
+      \mathsf{GetRights}(user) \in \alpha_{t_1}
+      \Rightarrow
+      (\exists\ t_2,\ uid.\ \mathsf{CredentialPresent}(user, \texttt{VP}) \in \alpha_{t_2} \land t_2 < t_1)
+    \]
+  </span>
+</div>
+
+<p>
+  <strong>Goal 5. Selective Disclosure.</strong>
+  <em>A verifier can access only a subset of the claims in a VC.</em>
+  <small class="spec-reference">See: Section 6.3 “Disclosure of Personal Information” in 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>]
+  </small>
+  This enforces <em>data minimization</em>, ensuring that only necessary claims are disclosed while preserving the holder's privacy.
+</p>
+
+<!-- <p>
+  As an example, the selective disclosure property is formally defined below, styled after the approach in 
+  [<cite><a class="bibref" href="#bib-emv_verify">EMV</a></cite>]:
+</p> -->
+
+<!-- <p><em>A protocol \( P \) satisfies this property if, for every trace \( \alpha \in \mathit{traces}(P) \), the following condition holds:</em></p> -->
+<p>
+  We use the following FOL formula to express this goal:
+</p>
+<div id="math-block">
+  <span id="math">
+    \[
+    \begin{aligned}
+      \forall\ \texttt{VP},\ v,\ id,\ t_1.\ 
+      &\mathsf{VPGetPass}(v, id, \texttt{VC}', \texttt{VP}) \in \alpha_{t_1} \Rightarrow \\
+      &\left(
+        \begin{aligned}
+          &\exists\ t_2,\ uid,\ \texttt{VC}.\ 
+            \mathsf{importVC}(uid, \texttt{VC}) \in \alpha_{t_2} \land t_2 < t_1\ \land\\
+          &\exists\ \texttt{sigJWT},\ \texttt{d},\ \texttt{C}.\ 
+            \texttt{VC} = \langle \texttt{sigJWT}, \texttt{C} \rangle \land
+            \texttt{VC}' = \langle \texttt{sigJWT}, \texttt{D} \rangle \land
+            \texttt{D} \sqsubset \texttt{C}
+        \end{aligned}
+      \right)
+    \end{aligned}
+    \]
+  </span>
+</div>
+
+
+<p>
+  Here, <span id="math">\( \texttt{VC} \)</span> and <span id="math">\( \texttt{C} \)</span> come from the "VC Construction” in Figure 1(a), 
+  while <span id="math">\( \texttt{VP} \)</span> and <span id="math">\( \texttt{D} \)</span> originate from the "VP Construction” in Figure 1(b).
+  The mini-program verifier <span id="math">\( v \)</span> with identity <span id="math">\( id \)</span> first validates 
+  <span id="math">\( \texttt{VP} \)</span> at timestamp <span id="math">\( t_1 \)</span> (line 1) and then verifies that a holder 
+  (<span id="math">\( uid \)</span>) possesses a VC from an earlier timestamp <span id="math">\( t_2 \)</span> (line 2), from which 
+  <span id="math">\( \texttt{VP} \)</span> is constructed (line 3). Note that the symbol 
+  <span id="math">\( \sqsubset \)</span> denotes the subterm relation 
+  [<cite><a class="bibref" href="#bib-subterm">Cremers2023</a></cite>], representing the subset relationship between 
+  <span id="math">\( \texttt{VP} \)</span> and <span id="math">\( \texttt{VC} \)</span>.
+</p>
+
+
+</section>
+
+
+
+<section id="recommendations">
+  <div class="header-wrapper">
+    <h2 id="x6-recommendations-lessons-and-insights">
+      <bdi class="secno">6. </bdi>Recommendations, Lessons and Insights
+    </h2>
+    <a class="self-link" href="#recommendations" aria-label="Permalink for Section 6."></a>
+  </div>
+
+  <p>
+    We summarize our proof effort, and provide recommendations to enhance DID security analysis.
+  </p>
+
+  <section id="proof-effort">
+    <div class="header-wrapper">
+      <h3 id="x6-1-proof-effort">
+        <bdi class="secno">6.1 </bdi>Proof Effort
+      </h3>
+      <a class="self-link" href="#proof-effort" aria-label="Permalink for Section 5.1"></a>
+    </div>
+
+    <p>
+      <em>Tamarin</em> requires manual intervention for protocols with large state spaces. 
+      We use interactive mode to refine proof strategies, record solving steps, and apply regex-based heuristics for automation. 
+      Auxiliary lemmas further aid verification.
+    </p>
+
+    <p>
+      This work complements manual auditing by verifying IIFAA 
+      [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] in Alipay, identifying security assumptions, 
+      and proposing mitigations for potential attacks.
+    </p>
+
+    <p>
+      Following [<cite><a class="bibref" href="#bib-Verify-Exposure">Morio2023</a></cite>, 
+      <cite><a class="bibref" href="#bib-Verifiy-noise">Girol2020</a></cite>], 
+      we formalize each security goal as 
+      <span id="math">\( \tau \Rightarrow C \lor P_1 \lor \dots \lor P_n \)</span>, 
+      where <span id="math">\( \tau \)</span> is the trigger event 
+      [<cite><a class="bibref" href="#bib-Verifiy-noise">Girol2020</a></cite>], 
+      <span id="math">\( C \)</span> is the intended security property, and 
+      <span id="math">\( P_i \)</span> represents the <span id="math">\( i \)</span>-th attack vector violating 
+      <span id="math">\( C \)</span>.
+    </p>
+
+    <p>
+      This rule states: <em>if <span id="math">\( \tau \)</span> holds, then either <span id="math">\( C \)</span> is satisfied, 
+      or an attack vector <span id="math">\( P_i \)</span> exists</em>. To identify all the attack vectors, we start with 
+      <span id="math">\( \tau \Rightarrow C \)</span>. When <em>Tamarin</em> finds the first attack trace 
+      <span id="math">\( P_1 \)</span>, it is added to the formula. This process repeats iteratively until 
+      <span id="math">\( \tau \Rightarrow C \lor P_1 \lor \dots \lor P_n \)</span> holds, ensuring no further attack vectors exist.
+    </p>
+
+
+<table class="simple" id="tab-statistics">
+  <caption>Table 1: Proof results.</caption>
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Property</th>
+      <th>Verified</th>
+      <!-- <th>Time (secs)</th> -->
+      <th>Conditions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr>
+      <td>0</td>
+      <td><code>Executability</code></td>
+      <td>✔</td>
+      <td>16.76</td>
+      <td></td>
+    </tr> -->
+    <tr>
+      <td>1</td>
+      <td><code>Secrecy</code></td>
+      <td>✘</td>
+      <!-- <td>95.92</td> -->
+      <td>Adversary cannot control multiple verifiers.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><code>Integrity</code></td>
+      <td>✔</td>
+      <!-- <td>25.95</td> -->
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><code>Injective Agreement</code></td>
+      <td>✘</td>
+      <!-- <td>49.52</td> -->
+      <td>Challenge Code should be enabled.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><code>Legal Presentation</code></td>
+      <td>✘</td>
+      <!-- <td>33.40</td> -->
+      <td>VP should avoid leakage.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><code>Selective Disclosure</code></td>
+      <td>✔</td>
+      <!-- <td>12.47</td> -->
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+    <!-- <p>
+      Our proofs were conducted on a server with dual Intel Xeon Gold 6230R CPUs (2.10GHz, up to 4.00GHz) and 16GB RAM 
+      using <em>Tamarin</em> v1.8.0. We verified five goals (Goal 1–Goal 5), with proofs available in 
+      [<cite><a class="bibref" href="#bib-artifact">Artifact</a></cite>] and summaries in 
+      <code>Goal1.spthy</code>–<code>Goal6.spthy</code>. Proof times, listed in 
+      Table&nbsp;<span class="fig-ref">5</span>, range from 
+      <span id="math">\( 12.47 \)</span> to <span id="math">\( 96.92 \)</span> seconds but may vary across computing environments.
+    </p> -->
+  
+  </section>
+
+
+  <section id="security-recommendations">
+  <div class="header-wrapper">
+    <h3 id="x6-2-security-recommendations">
+      <bdi class="secno">6.2 </bdi>Security Recommendations
+    </h3>
+    <a class="self-link" href="#security-recommendations" aria-label="Permalink for Section 6.2"></a>
+  </div>
+
+  <p>
+    As shown in Table&nbsp;<a href="#tab-statistics">1</a>, our analysis validates three security goals (Executability, Integrity, and Selective Disclosure) and finds that the satisfaction of the other three goals (Secrecy, Injective Agreement, and Legal Presentation) requires additional conditions. We reported these to developers, who confirmed that mitigation solutions were deployed.
+  </p>
+
+  <p><strong>1. Multiple VPs may recover VC</strong></p>
+
+  <p>
+    The falsification of Goal 1 (Secrecy) reveals that an adversary controlling multiple mini-program verifiers can reconstruct a 
+    <span id="math">\( \texttt{VC} \)</span> from its 
+    <span id="math">\( \texttt{VP} \)</span>s by observing inputs, outputs, and using compromised private keys for decryption.
+  </p>
+
+  <p>The attack proceeds as follows:</p>
+  <ol>
+    <li>Malicious verifiers <span id="math">\( V \)</span> send VP requests to the same holder.</li>
+    <li>Each verifier <span id="math">\( v_i \in V \)</span> receives <span id="math">\( \texttt{VP}_i \)</span>, decrypts it using <span id="math">\( \mathsf{sk}_{v_i} \)</span>, and collects the disclosed claims.</li>
+    <li>Since different VPs may reveal different parts of a VC, the adversary aggregates claims <span id="math">\( \mathit{c}_i \)</span> from multiple <span id="math">\( \texttt{VP}_i \)</span> to reconstruct the original VC as:
+      <br>
+      <span id="math">\( \texttt{VC} \leftarrow \texttt{sigJWT} \ \Vert \ \mathit{c}_1 \ \Vert \ \cdots \ \Vert \ \mathit{c}_n \)</span>
+    </li>
+  </ol>
+
+  <p>
+    In practice, enterprise mini-program verifiers undergo strict registration and audits, making it difficult—but not impossible—for an attacker to control multiple malicious mini-programs to execute this attack.
+  </p>
+
+  <p>
+    This attack underscores the need for stricter security in enterprise verifiers, including rigorous registration, auditing, and compliance checks. VP verification should also require user confirmation, particularly for sensitive data, ensuring undisclosed claims remain protected. Additionally, zero-knowledge proof technology can be employed to protect users' sensitive information, preventing verifiers from obtaining accurate personal privacy data.
+  </p>
+
+  <p><strong>2. Lack of Challenge Code Enables VP Replay</strong></p>
+
+  <p>
+    The falsification of Goal 3 (Injective Agreement) confirms a replay attack in VP verification, as noted in 
+    [<cite><a class="bibref" href="#bib-verifyssi">Braun2024</a></cite>]. Like W3C standards 
+    [<cite><a class="bibref" href="#bib-vc-data-integrity-1.0">VC-Data-Integrity-1.0</a></cite>], 
+    IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] treats challenge codes as optional. 
+    While we recommend using a challenge-response mechanism to prevent replay attacks, developers argue that some applications omit it for efficiency, especially when replay attacks have inconsequential consequences.
+  </p>
+
+  <p>
+    Based on our analysis, we recommend a thorough risk assessment to balance efficiency and security, ensuring that omitting challenge codes is justified and aligns with the application's security needs.
+  </p>
+
+  <p><strong>3. Decoupling VP from Presenter Identity</strong></p>
+
+  <p>
+    Verifying Goal 4 (Legal Presentation) reveals that VPs are not directly bound to the presenter. A VP remains valid even if forwarded to another holder, creating a privacy risk where verification does not confirm the original presenter's identity.
+  </p>
+
+  <p>
+    On mobile platforms (e.g., the Alipay client), we recommend implementing VP verification as an "atomic operation" (e.g., one-click actions like "click-to-jump") to minimize the window for interception and misuse. Optionally, biometric authentication (e.g., facial or fingerprint recognition 
+    [<cite><a class="bibref" href="#bib-fingerprint">fingerprint</a></cite>]) can be integrated based on risk levels, further binding a VP to its legitimate user.
+  </p>
+</section>
+
+
+<section id="lessons-and-insights">
+  <div class="header-wrapper">
+    <h3 id="x5-3-lessons-and-insights">
+      <bdi class="secno">6.3 </bdi>Lessons and Insights
+    </h3>
+    <a class="self-link" href="#lessons-and-insights" aria-label="Permalink for Section 6.3"></a>
+  </div>
+
+  <p>
+    A bottom-up modeling approach enhances the efficiency and scalability of DID protocol analysis, facilitating its integration into practical auditing workflows—our most valuable takeaway.
+  </p>
+
+  <p>
+    Formal analysis of protocols is highly time-consuming. Extracting the complete protocol (see Section 
+    <a href="#protocol-extraction">2.3</a>), modeling in 
+    <em>Tamarin</em> (see Section <a href="#protocol-modeling">3.1</a>), and developing proof strategies took approximately three person-months. 
+    The final model comprises 33 rules, totalling 
+    <span id="math">\( \sim 1000 \)</span> lines of code (LoC).
+  </p>
+
+  <p>
+    In practice, the lifecycle of protocols like DID—from design to deployment—evolves rapidly, demanding a verification approach distinct from most academic security studies 
+    [<cite><a class="bibref" href="#bib-SPDM">SPDM</a></cite>, 
+     <cite><a class="bibref" href="#bib-EME">EME</a></cite>, 
+     <cite><a class="bibref" href="#bib-5gakaverif">5GAKA</a></cite>, 
+     <cite><a class="bibref" href="#bib-tlsverif">TLS1.3</a></cite>]. 
+    Existing research emphasizes low-level details (e.g., handshake mechanisms), resulting in complex models with limited scalability. 
+    The high effort required to build formal models from scratch further hinders the adoption of automated formal methods in industry.
+  </p>
+
+  <p>
+    Enhancing the efficiency of formal analysis is crucial for real-world adoption. As DID depends on infrastructure like TLS, 
+    a bottom-up approach proved effective in formalizing complex models like IIFAA DID 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>]. 
+    By initially modeling foundational components such as TLS and JSAPI, integrating these into an updated or entirely new DID protocol model becomes more streamlined. 
+    This reuse of models boosts scalability and reduces modeling and proof efforts, vital as 
+    [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] and similar standards 
+    [<cite><a class="bibref" href="#bib-mevid">MEVID</a></cite>, 
+     <cite><a class="bibref" href="#bib-bsndid">BSNDID</a></cite>, 
+     <cite><a class="bibref" href="#bib-eidas">eIDAS</a></cite>] evolve.
+  </p>
+</section>
+
+
+</section>
+
+
+<section id="conclusion">
+  <div class="header-wrapper">
+    <h2 id="x7-conclusion">
+      <bdi class="secno">7. </bdi>Conclusion
+    </h2>
+    <a class="self-link" href="#conclusion" aria-label="Permalink for Section 7."></a>
+  </div>
+
+  <p>
+    We conducted the first formal analysis of a DID application within a super app. 
+    Our symbolic model captures the fine-grained mechanisms of DID authentication and its underlying infrastructure. 
+    Key security properties—secrecy, integrity, injective agreement, legal presentation, and selective disclosure—
+    are formalized using FOL formulas despite incomplete and imprecise specifications. 
+    Through automated auditing based on formal verification, we have either confirmed the validity of security properties 
+    or precisely identified the conditions required for their satisfaction, while providing corresponding security recommendations.
+  </p>
+
+  <p>
+    <!-- Supported by an open-source release, our work contributes to future DID security analysis 
+    and offers insights into securing DID services within super apps.
+  </p> -->
+</section>
+
+<section id="references" class="appendix"><div class="header-wrapper"><h2 id="f-references"><bdi class="secno">A. </bdi>References</h2><a class="self-link" href="https://www.w3.org/TR/did-1.0/#references" aria-label="Permalink for Appendix F."></a></div>
+  <!-- <section id="normative-references"><div class="header-wrapper"><h3 id="f-1-normative-references"><bdi class="secno">F.1 </bdi>Normative references</h3><a class="self-link" href="https://www.w3.org/TR/did-1.0/#normative-references" aria-label="Permalink for Appendix F.1"></a></div> -->
+    <dl class="bibliography">
+    
+    <dt id="bib-vcdm">[VCDM]</dt>
+    <dd>
+      <a href="https://www.w3.org/TR/vc-data-model-2.0/"><cite>Verifiable Credentials Data Model v2.0</cite></a>. W3C. W3C Candidate Recommendation Draft 28 August 2024. URL: <a href="https://www.w3.org/TR/vc-data-model-2.0/">https://www.w3.org/TR/vc-data-model-2.0/</a>
+    </dd>
+
+    <dt id="bib-did">[DID]</dt>
+    <dd>
+      <a href="https://www.w3.org/TR/did-core/"><cite>Decentralized Identifiers (DIDs) v1.0</cite></a>. W3C. W3C Recommendation 19 July 2022. URL: <a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a>
+    </dd>
+
+    <dt id="bib-didcomm">[DIDComm]</dt>
+    <dd>
+      <a href="https://identity.foundation/didcomm-messaging/spec/"><cite>DIDComm Messaging v2.x Editor's Draft</cite></a>. Decentralized Identity Foundation. DIDComm Messaging v2.x Editor's Draft. URL: <a href="https://identity.foundation/didcomm-messaging/spec/">https://identity.foundation/didcomm-messaging/spec/</a>
+    </dd>
+
+    <dt id="bib-w3c_threat_modeling_did">[W3C-threat-modeling]</dt>
+    <dd>
+      <a href="https://github.com/w3c-cg/threat-modeling/blob/main/models/decentralized-identities.md"><cite>Decentralized Identities Threat Model</cite></a>. Threat Modeling Community Group (TMCG). Accessed: 2024-09-14. URL: <a href="https://github.com/w3c-cg/threat-modeling/blob/main/models/decentralized-identities.md">https://github.com/w3c-cg/threat-modeling/blob/main/models/decentralized-identities.md</a>
+    </dd>
+
+    <dt id="bib-soap">[SOAP]</dt>
+    <dd>
+      <a href="https://www.usenix.org/conference/usenixsecurity24/presentation/linker"><cite>SOAP: A Social Authentication Protocol</cite></a>. Felix Linker; David Basin. 33rd USENIX Security Symposium (USENIX Security 24). USENIX Association. 2024. Pages: 3223–3240. URL: <a href="https://www.usenix.org/conference/usenixsecurity24/presentation/linker">https://www.usenix.org/conference/usenixsecurity24/presentation/linker</a>
+    </dd>
+
+    <!-- <dt id="bib-leakofmk">[LEAKOFMK]</dt>
+    <dd>
+      <cite>Don't leak your keys: Understanding, measuring, and exploiting the appsecret leaks in mini-programs</cite>. Yue Zhang; Yuqing Yang; Zhiqiang Lin. Proceedings of the 2023 ACM SIGSAC Conference on Computer and Communications Security. 2023. Pages: 2411–2425.
+    </dd> -->
+
+    
+    <dt id="bib-alipay_docs">[Alipay-Docs]</dt>
+    <dd>
+      <a href="https://miniprogram.alipay.com/docs/"><cite>Alipay Mini Program Documentation</cite></a>. Alipay. 2024. URL: <a href="https://miniprogram.alipay.com/docs/">https://miniprogram.alipay.com/docs/</a>
+    </dd>
+
+    <dt id="bib-sdjwt">[SDJWT]</dt>
+    <dd>
+      <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/13/"><cite>Selective Disclosure for JWTs (SD-JWT)</cite></a>. Daniel Fett; Kristina Yasuda; Brian Campbell. Internet Engineering Task Force. Internet-Draft, Work in Progress. 2024-10-18. URL: <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/13/">https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/13/</a>
+    </dd>
+
+    <dt id="bib-eme">[EME]</dt>
+    <dd>
+      <cite>Formal Security Analysis of Widevine through the W3C EME Standard</cite>. Stéphanie Delaune; Joseph Lallemand; Gwendal Patat; Florian Roudot; Mohamed Sabt. 33rd USENIX Security Symposium (USENIX Security 24). 2024. Pages: 6399–6415.
+    </dd>
+
+    <dt id="bib-spdm">[SPDM]</dt>
+    <dd>
+      <cite>Formal Analysis of SPDM: Security Protocol and Data Model version 1.2</cite>. Cas Cremers; Alexander Dax; Aurora Naska. 32nd USENIX Security Symposium (USENIX Security 23). 2023. Pages: 6611–6628.
+    </dd>
+
+    <dt id="bib-authcodemodel">[AUTHCODEMODEL]</dt>
+    <dd>
+      <cite>Privacy-preserving OpenID connect</cite>. Sven Hammann; Ralf Sasse; David Basin. Proceedings of the 15th ACM Asia Conference on Computer and Communications Security. 2020. Pages: 277–289.
+    </dd>
+
+    <dt id="bib-oauth">[OAuth2.0]</dt>
+    <dd>
+      <a href="https://www.rfc-editor.org/info/rfc6749"><cite>The OAuth 2.0 Authorization Framework</cite></a>. Dick Hardt. RFC 6749. RFC Editor. 2012. URL: <a href="https://www.rfc-editor.org/info/rfc6749">https://www.rfc-editor.org/info/rfc6749</a>
+    </dd>
+
+    <!-- <dt id="bib-cremers2019component">[CREMERS2019COMPONENT]</dt>
+    <dd>
+      <cite>Component-based formal analysis of 5G-AKA: Channel assumptions and session confusion</cite>. Cas Cremers; Martin Dehnel-Wild. Network and Distributed System Security Symposium (NDSS). Internet Society. 2019.
+    </dd> -->
+
+    <!-- <dt id="bib-draft21">[DRAFT21]</dt>
+    <dd>
+      <a href="https://datatracker.ietf.org/doc/draft-ietf-tls-tls13/21/"><cite>The Transport Layer Security (TLS) Protocol Version 1.3</cite></a>. Eric Rescorla. Internet Engineering Task Force. Internet-Draft, Work in Progress. 2017-07-04. URL: <a href="https://datatracker.ietf.org/doc/draft-ietf-tls-tls13/21/">https://datatracker.ietf.org/doc/draft-ietf-tls-tls13/21/</a>
+    </dd> -->
+
+    <dt id="bib-shostack_4questionframe">[Shostack-4-question]</dt>
+    <dd>
+      <a href="https://github.com/adamshostack/4QuestionFrame"><cite>4 Question Frame</cite></a>. Adam Shostack. Accessed: 2024-09-14. URL: <a href="https://github.com/adamshostack/4QuestionFrame">https://github.com/adamshostack/4QuestionFrame</a>
+    </dd>
+
+    <dt id="bib-tamarin">[Tamarin]</dt>
+    <dd>
+      <cite>The TAMARIN prover for the symbolic analysis of security protocols</cite>. Simon Meier; Benedikt Schmidt; Cas Cremers; David Basin. Computer Aided Verification: 25th International Conference, CAV 2013. Springer. 2013. Pages: 696–701.
+    </dd>
+
+    <dt id="bib-subterm">[Cremers2023]</dt>
+    <dd>
+      <cite>Subterm-based proof techniques for improving the automation and scope of security protocol analysis</cite>. Cas Cremers; Charlie Jacomme; Philip Lukert. 2023 IEEE 36th Computer Security Foundations Symposium (CSF). IEEE. 2023. Pages: 200–213.
+    </dd>
+
+    <dt id="bib-proverif">[ProVerif]</dt>
+    <dd>
+      <cite>Automatic verification of security protocols in the symbolic model: The verifier ProVerif</cite>. Bruno Blanchet. International School on Foundations of Security Analysis and Design. Springer. 2012. Pages: 54–87.
+    </dd>
+
+    <dt id="bib-tlsverif">[TLS1.3]</dt>
+    <dd>
+      <cite>A comprehensive symbolic analysis of TLS 1.3</cite>. Cas Cremers; Marko Horvat; Jonathan Hoyland; Sam Scott; Thyla van der Merwe. Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security. 2017. Pages: 1773–1788.
+    </dd>
+
+    <dt id="bib-5gakaverif">[5GAKA]</dt>
+    <dd>
+      <cite>A formal analysis of 5G authentication</cite>. David Basin; Jannik Dreier; Lucca Hirschi; Saša Radomirović; Ralf Sasse; Vincent Stettler. Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security. 2018. Pages: 1383–1396.
+    </dd>
+
+    <dt id="bib-emv_verify">[EMV]</dt>
+    <dd>
+      <cite>The EMV standard: Break, fix, verify</cite>. David Basin; Ralf Sasse; Jorge Toro-Pozo. 2021 IEEE Symposium on Security and Privacy (SP). IEEE. 2021. Pages: 1766–1781.
+    </dd>
+
+    <dt id="bib-deepsec">[DeepSec]</dt>
+    <dd>
+      <cite>DEEPSEC: deciding equivalence properties in security protocols theory and practice</cite>. Vincent Cheval; Steve Kremer; Itsaka Rakotonirina. 2018 IEEE Symposium on Security and Privacy (SP). IEEE. 2018. Pages: 529–546.
+    </dd>
+
+
+    <dt id="bib-wechat">[WeChat]</dt>
+    <dd>
+      <a href="https://www.wechat.com/"><cite>WeChat Official Website</cite></a>. WeChat. 2024. URL: <a href="https://www.wechat.com/">https://www.wechat.com/</a>
+    </dd>
+
+    <dt id="bib-alipay">[Alipay]</dt>
+    <dd>
+      <a href="https://global.alipay.com/platform/site/ihome"><cite>Alipay</cite></a>. AliPay. 2024. URL: <a href="https://global.alipay.com/platform/site/ihome">https://global.alipay.com/platform/site/ihome</a>
+    </dd>
+
+    <!-- <dt id="bib-snapchat">[SnapChat]</dt>
+    <dd>
+      <a href="https://www.snapchat.com/"><cite>SnapChat</cite></a>. SnapChat. 2024. URL: <a href="https://www.snapchat.com/">https://www.snapchat.com/</a>
+    </dd> -->
+
+    <dt id="bib-3gpp">[3GPP]</dt>
+    <dd>
+      <cite>Security architecture and procedures for 5G system</cite>. 3GPP. Technical Specification (TS) 3GPP TS 33.501 v15.1.0. 2018.
+    </dd>
+
+
+    <dt id="bib-verifyssi">[Braun2024]</dt>
+    <dd>
+      <cite>SSI, from Specifications to Protocol? Formally verify security!</cite>. Christoph H-J Braun; Ross Horne; Tobias Käfer; Sjouke Mauw. Proceedings of the ACM on Web Conference 2024. 2024. Pages: 1620–1631.
+    </dd>
+
+    <dt id="bib-verifydidcomm">[Badertscher2024]</dt>
+    <dd>
+      <cite>What Did Come Out of It? Analysis and Improvements of DIDComm Messaging</cite>. Christian Badertscher; Fabio Banfi; Jesus Diaz. Cryptology ePrint Archive. 2024.
+    </dd>
+
+    <dt id="bib-verifyoid4vc">[VerifyOID4VC]</dt>
+    <dd>
+      <a href="http://elib.uni-stuttgart.de/handle/11682/13791"><cite>OpenID for Verifiable Credentials: Formal Security Analysis Using the Web Infrastructure Model</cite></a>. Fabian Hauck. Master's thesis. University of Stuttgart. 2023. URL: <a href="http://elib.uni-stuttgart.de/handle/11682/13791">http://elib.uni-stuttgart.de/handle/11682/13791</a>. DOI: 10.18419/opus-13772.
+    </dd>
+
+    <dt id="bib-oid4vc">[OID4VC]</dt>
+    <dd>
+      <cite>OpenID for verifiable credentials</cite>. Kenichi Nakamura Chadwick; Jo Vercammen. 2022.
+    </dd>
+
+    <dt id="bib-oid4vp">[OID4VP]</dt>
+    <dd>
+      <a href="https://openid.net/specs/openid-4-verifiable-presentations-1_0-17.html"><cite>OpenID for Verifiable Presentations</cite></a>. O. Terbu; T. Lodderstedt; K. Yasuda; T. Looker. 2023-03-25. URL: <a href="https://openid.net/specs/openid-4-verifiable-presentations-1_0-17.html">https://openid.net/specs/openid-4-verifiable-presentations-1_0-17.html</a>
+    </dd>
+
+
+    <dt id="bib-delvoyao">[DolevYao]</dt>
+    <dd>
+      <cite>On the security of public key protocols</cite>. Danny Dolev; Andrew Yao. IEEE Transactions on Information Theory. IEEE. 1983. Volume 29, Number 2. Pages: 198–208.
+    </dd>
+
+    <dt id="bib-zhang2023don">[Zhang2023]</dt>
+    <dd>
+      <cite>Don't leak your keys: Understanding, measuring, and exploiting the appsecret leaks in mini-programs</cite>. Yue Zhang; Yuqing Yang; Zhiqiang Lin. Proceedings of the 2023 ACM SIGSAC Conference on Computer and Communications Security. 2023. Pages: 2411–2425.
+    </dd>
+
+    <!-- <dt id="bib-tencentclouddid">[TENCENTCLOUDDID]</dt>
+    <dd>
+      <a href="https://cloud.tencent.com/document/product/1439"><cite>Product Documentation</cite></a>. Tencent Cloud. 2024. URL: <a href="https://cloud.tencent.com/document/product/1439">https://cloud.tencent.com/document/product/1439</a>
+    </dd> -->
+
+
+  <dt id="bib-mevid">[MEVID]</dt>
+  <dd>
+    <a href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-verified-id"><cite>Microsoft Entra Verified ID</cite></a>. Microsoft. URL: <a href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-verified-id">https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-verified-id</a>
+  </dd>
+
+  <dt id="bib-bsndid">[BSNDID]</dt>
+  <dd>
+    <a href="https://www.bsnbase.com/"><cite>BSN DID</cite></a>. BSN. URL: <a href="https://www.bsnbase.com/">https://www.bsnbase.com/</a>
+  </dd>
+
+  <dt id="bib-iifaawebsite">[IIFAAWebsite]</dt>
+  <dd>
+    <a href="https://www.iifaa.org.cn/"><cite>The IIFAA Official Web Page</cite></a>. IIFAA. URL: <a href="https://www.iifaa.org.cn/">https://www.iifaa.org.cn/</a>
+  </dd>
+
+  <dt id="bib-iifaadid">[IIFAADID]</dt>
+  <dd>
+    <a href="https://www.iifaa.org.cn/technical#standard"><cite>IIFAA Decentralized Authentication Technical Specification, Part 1: General Requirement</cite></a>. IIFAA. URL: <a href="https://www.iifaa.org.cn/technical#standard">https://www.iifaa.org.cn/technical#standard</a>
+  </dd>
+
+  <dt id="bib-eidas">[EIDAS]</dt>
+  <dd>
+    <a href="https://www.european-digital-identity-regulation.com/"><cite>The European Digital Identity Regulation</cite></a>. URL: <a href="https://www.european-digital-identity-regulation.com/">https://www.european-digital-identity-regulation.com/</a>
+  </dd>
+
+  <!-- <dt id="bib-hesse2023bind">[HESSE2023BIND]</dt>
+  <dd>
+    <cite>How to bind anonymous credentials to humans</cite>. Julia Hesse; Nitin Singh; Alessandro Sorniotti. 32nd USENIX Security Symposium (USENIX Security 23). 2023. Pages: 3047–3064.
+  </dd> -->
+
+  <!-- <dt id="bib-brunner2020did">[BRUNNER2020DID]</dt>
+  <dd>
+    <cite>DID and VC: Untangling decentralized identifiers and verifiable credentials for the Web of Trust</cite>. Clemens Brunner; Ulrich Gallersdörfer; Fabian Knirsch; Dominik Engel; Florian Matthes. Proceedings of the 2020 3rd International Conference on Blockchain Technology and Applications. 2020. Pages: 61–66.
+  </dd> -->
+
+  <!-- <dt id="bib-artifact">[ARTIFACT]</dt>
+  <dd>
+    <a href="https://github.com/zerrymore11/VerifyDID"><cite>VerifyDID: A project for verifying IIFAA Decentralized Identifiers</cite></a>. 2024. Accessed: 2024-11-17. URL: <a href="https://github.com/zerrymore11/VerifyDID">https://github.com/zerrymore11/VerifyDID</a>
+  </dd> -->
+
+  <dt id="bib-vc-data-integrity-1.0">[VC-Data-Integrity-1.0]</dt>
+  <dd>
+    <a href="https://www.w3.org/TR/vc-data-integrity/"><cite>Verifiable Credential Data Integrity 1.0</cite></a>. Dave Longley, Manu Sporny. 2023. URL: <a href="https://www.w3.org/TR/vc-data-integrity/">https://www.w3.org/TR/vc-data-integrity/</a>
+  </dd>
+
+
+  <dt id="bib-fingerprint">[FINGERPRINT]</dt>
+  <dd>
+    <cite>Security protocols for biometrics-based cardholder authentication in smartcards</cite>. Luciano Rila; Chris J. Mitchell. Applied Cryptography and Network Security: First International Conference, ACNS 2003, Kunming, China, October 16–19, 2003. Springer. 2003. Pages: 254–264.
+  </dd>
+
+  <dt id="bib-verify-exposure">[Morio2023]</dt>
+  <dd>
+    <cite>Automated security analysis of exposure notification systems</cite>. Kevin Morio; Ilkan Esiyok; Dennis Jackson; Robert Künnemann. 32nd USENIX Security Symposium (USENIX Security 23). 2023. Pages: 6593–6610.
+  </dd>
+
+  <dt id="bib-verifiy-noise">[Girol2020]</dt>
+  <dd>
+    <cite>A spectral analysis of noise: A comprehensive, automated, formal analysis of Diffie-Hellman protocols</cite>. Guillaume Girol; Lucca Hirschi; Ralf Sasse; Dennis Jackson; Cas Cremers; David Basin. 29th USENIX Security Symposium (USENIX Security 20). 2020. Pages: 1857–1874.
+  </dd>
+
+  <!-- <dt id="bib-wang2023towards">[WANG2023TOWARDS]</dt>
+  <dd>
+    <cite>Towards a better super-app architecture from a browser security perspective</cite>. Yue Wang; Yao Yao; Shangcheng Shi; Weiting Chen; Lin Huang. Proceedings of the 2023 ACM Workshop on Secure and Trustworthy Superapps. 2023. Pages: 23–28.
+  </dd> -->
+
+  <dt id="bib-openapisignature">[OpenAPI]</dt>
+  <dd>
+    <a href="https://opendocs.alipay.com/common/02kf5p"><cite>OpenAPI Signature Methods</cite></a>. Alipay. URL: <a href="https://opendocs.alipay.com/common/02kf5p">https://opendocs.alipay.com/common/02kf5p</a>
+  </dd>
+
+  <dt id="bib-alipayjsapi">[AlipayJSAPI]</dt>
+  <dd>
+    <a href="https://opendocs.alipay.com/mini/api/vzt2xm"><cite>Alipay Mini-program API list</cite></a>. Alipay. 2024. Accessed: 2024-11-17. URL: <a href="https://opendocs.alipay.com/mini/api/vzt2xm">https://opendocs.alipay.com/mini/api/vzt2xm</a>
+  </dd>
+
+
+
+  </section>
+
+
+
+
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+<p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
