@@ -1,531 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
-  <meta name="generator" content="ReSpec 35.1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <style>
-    dfn {
-      cursor: pointer
-    }
-
-    .dfn-panel {
-      position: absolute;
-      z-index: 35;
-      min-width: 300px;
-      max-width: 500px;
-      padding: .5em .75em;
-      margin-top: .6em;
-      font-family: "Helvetica Neue", sans-serif;
-      font-size: small;
-      background: #fff;
-      background: var(--indextable-hover-bg, #fff);
-      color: #000;
-      color: var(--text, #000);
-      box-shadow: 0 1em 3em -.4em rgba(0, 0, 0, .3), 0 0 1px 1px rgba(0, 0, 0, .05);
-      box-shadow: 0 1em 3em -.4em var(--tocsidebar-shadow, rgba(0, 0, 0, .3)), 0 0 1px 1px var(--tocsidebar-shadow, rgba(0, 0, 0, .05));
-      border-radius: 2px
-    }
-
-.caption{margin-top:.5em;font-style:italic}
-table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
-.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
-.simple th a{color:#fff;padding:3px 5px;text-align:left}
-.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
-.simple td{padding:3px 10px;border-top:1px solid #ddd}
-.simple tr:nth-child(even){background:#f0f6ff}
-
-    .dfn-panel:not(.docked)>.caret {
-      position: absolute;
-      top: -9px
-    }
-
-    .dfn-panel:not(.docked)>.caret::after,
-    .dfn-panel:not(.docked)>.caret::before {
-      content: "";
-      position: absolute;
-      border: 10px solid transparent;
-      border-top: 0;
-      border-bottom: 10px solid #fff;
-      border-bottom-color: var(--indextable-hover-bg, #fff);
-      top: 0
-    }
-
-    .dfn-panel:not(.docked)>.caret::before {
-      border-bottom: 9px solid #a2a9b1;
-      border-bottom-color: var(--indextable-hover-bg, #a2a9b1)
-    }
-
-    .dfn-panel * {
-      margin: 0
-    }
-
-    .dfn-panel b {
-      display: block;
-      color: #000;
-      color: var(--text, #000);
-      margin-top: .25em
-    }
-
-    .dfn-panel ul a[href] {
-      color: #333;
-      color: var(--text, #333)
-    }
-
-    .dfn-panel>div {
-      display: flex
-    }
-
-    .dfn-panel a.self-link {
-      font-weight: 700;
-      margin-right: auto
-    }
-
-    .dfn-panel .marker {
-      padding: .1em;
-      margin-left: .5em;
-      border-radius: .2em;
-      text-align: center;
-      white-space: nowrap;
-      font-size: 90%;
-      color: #040b1c
-    }
-
-    .dfn-panel .marker.dfn-exported {
-      background: #d1edfd;
-      box-shadow: 0 0 0 .125em #1ca5f940
-    }
-
-    .dfn-panel .marker.idl-block {
-      background: #8ccbf2;
-      box-shadow: 0 0 0 .125em #0670b161
-    }
-
-    .dfn-panel a:not(:hover) {
-      text-decoration: none !important;
-      border-bottom: none !important
-    }
-
-    .spec-reference {
-    display: block;
-    margin-top: 4px;
-    font-size: 0.9em;
-    color: #555;
-  }
-
-    .dfn-panel a[href]:hover {
-      border-bottom-width: 1px
-    }
-
-    .dfn-panel ul {
-      padding: 0
-    }
-
-    .dfn-panel li {
-      margin-left: 1em
-    }
-
-    .dfn-panel.docked {
-      position: fixed;
-      left: .5em;
-      top: unset;
-      bottom: 2em;
-      margin: 0 auto;
-      max-width: calc(100vw - .75em * 2 - .5em - .2em * 2);
-      max-height: 30vh;
-      overflow: auto
-    }
-  </style>
-
-
-  <title>IIFAA Decentralized Trusted Authentication Technical Specification - Part 1: General Requirements</title>
-
-  <style id="respec-mainstyle">
-    @keyframes pop {
-      0% {
-        transform: scale(1, 1)
+  <title>A Formal Security Analysis of IIFAA DID in Super Apps</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+  <script class='remove'>
+    // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
+    var respecConfig = {
+      specStatus: "CG-FINAL",
+      shortName: "iifaa-did",
+      editors: [{
+        "name": "null"
       }
-
-      25% {
-        transform: scale(1.25, 1.25);
-        opacity: .75
-      }
-
-      100% {
-        transform: scale(1, 1)
-      }
-    }
-
-    a.internalDFN {
-      color: inherit;
-      border-bottom: 1px solid #99c;
-      text-decoration: none
-    }
-
-    a.externalDFN {
-      color: inherit;
-      border-bottom: 1px dotted #ccc;
-      text-decoration: none
-    }
-
-    a.bibref {
-      text-decoration: none
-    }
-
-    .respec-offending-element:target {
-      animation: pop .25s ease-in-out 0s 1
-    }
-
-    .respec-offending-element,
-    a[href].respec-offending-element {
-      text-decoration: red wavy underline
-    }
-
-    @supports not (text-decoration:red wavy underline) {
-      .respec-offending-element:not(pre) {
-        display: inline-block
-      }
-
-      .respec-offending-element {
-        background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x
-      }
-    }
-
-    #references :target {
-      background: #eaf3ff;
-      animation: pop .4s ease-in-out 0s 1
-    }
-
-    cite .bibref {
-      font-style: normal
-    }
-
-    a[href].orcid {
-      padding-left: 4px;
-      padding-right: 4px
-    }
-
-    a[href].orcid>svg {
-      margin-bottom: -2px
-    }
-
-    ol.tof,
-    ul.tof {
-      list-style: none outside none
-    }
-
-    .caption {
-      margin-top: .5em;
-      font-style: italic
-    }
-
-    #issue-summary>ul {
-      column-count: 2
-    }
-
-    #issue-summary li {
-      list-style: none;
-      display: inline-block
-    }
-
-    details.respec-tests-details {
-      margin-left: 1em;
-      display: inline-block;
-      vertical-align: top
-    }
-
-    details.respec-tests-details>* {
-      padding-right: 2em
-    }
-
-    details.respec-tests-details[open] {
-      z-index: 999999;
-      position: absolute;
-      border: thin solid #cad3e2;
-      border-radius: .3em;
-      background-color: #fff;
-      padding-bottom: .5em
-    }
-
-    details.respec-tests-details[open]>summary {
-      border-bottom: thin solid #cad3e2;
-      padding-left: 1em;
-      margin-bottom: 1em;
-      line-height: 2em
-    }
-
-    details.respec-tests-details>ul {
-      width: 100%;
-      margin-top: -.3em
-    }
-
-    details.respec-tests-details>li {
-      padding-left: 1em
-    }
-
-    .self-link:hover {
-      opacity: 1;
-      text-decoration: none;
-      background-color: transparent
-    }
-
-    aside.example .marker>a.self-link {
-      color: inherit
-    }
-
-    .header-wrapper {
-      display: flex;
-      align-items: baseline
-    }
-
-    :is(h2, h3, h4, h5, h6):not(#toc>h2, #abstract>h2, #sotd>h2, .head>h2) {
-      position: relative;
-      left: -.5em
-    }
-
-    :is(h2, h3, h4, h5, h6):not(#toch2)+a.self-link {
-      color: inherit;
-      order: -1;
-      position: relative;
-      left: -1.1em;
-      font-size: 1rem;
-      opacity: .5
-    }
-
-    :is(h2, h3, h4, h5, h6)+a.self-link::before {
-      content: "§";
-      text-decoration: none;
-      color: var(--heading-text)
-    }
-
-    :is(h2, h3)+a.self-link {
-      top: -.2em
-    }
-
-    :is(h4, h5, h6)+a.self-link::before {
-      color: #000
-    }
-
-    @media (max-width:767px) {
-      dd {
-        margin-left: 0
-      }
-    }
-
-    @media print {
-      .removeOnSave {
-        display: none
-      }
-    }
-
-    .logo {
-      text-align: right;
-      right: 0;
-      width: 30px;
-      /* or any other width you want */
-      height: 20px;
-      /* or any other height you want */
-    }
-
-    .logo-container {
-      display: flex;
-      justify-content: flex-end;
-      /* or flex-start if you want them aligned left */
-    }
-
-    .logo-1,
-    .logo-2 {
-      float: right;
-      margin-left: 10px;
-    }
-  </style>
-
-
-  <meta name="color-scheme" content="light">
-  <meta name="description" content="本文件规定了IIFAA分布式可信认证参考模型、技术架构和功能、业务流程、安全要求和个人信息保护要求。">
-  <style>
-    var {
-      position: relative;
-      cursor: pointer
-    }
-
-    var[data-type]::after,
-    var[data-type]::before {
-      position: absolute;
-      left: 50%;
-      top: -6px;
-      opacity: 0;
-      transition: opacity .4s;
-      pointer-events: none
-    }
-
-    var[data-type]::before {
-      content: "";
-      transform: translateX(-50%);
-      border-width: 4px 6px 0 6px;
-      border-style: solid;
-      border-color: transparent;
-      border-top-color: #222
-    }
-
-    var[data-type]::after {
-      content: attr(data-type);
-      transform: translateX(-50%) translateY(-100%);
-      background: #222;
-      text-align: center;
-      font-family: "Dank Mono", "Fira Code", monospace;
-      font-style: normal;
-      padding: 6px;
-      border-radius: 3px;
-      color: #daca88;
-      text-indent: 0;
-      font-weight: 400
-    }
-
-    var[data-type]:hover::after,
-    var[data-type]:hover::before {
-      opacity: 1
-    }
-  </style>
-  <div class="head">
-    
-    <script id="initialUserConfig" type="application/json">{
-  "specStatus": "CG-DRAFT",
-  "shortName": "iifaa-did",
-  "editors": [
-    {
-      "name": "null"
-    }
-  ],
-  "group": "cndid",
-  "publishISODate": "2024-07-25T00:00:00.000Z",
-  "generatedSubtitle": "Draft Community Group Report 25 January 2025"
-}</script>
-    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/cg-draft">
-</head>
-
-<body data-new-gr-c-s-check-loaded="14.1179.0" data-gr-ext-installed="" class="h-entry informative">
+      ],
+      "group": "cndid",
+      "publishISODate": "2024-07-25T00:00:00.000Z",
+      "generatedSubtitle": "Draft Community Group Report 25 January 2025"
+    }</script>
 
 
 
-
-  <h1 id="title" class="title">A Formal Security Analysis of IIFAA DID in Super Apps</h1>
-  <p id="w3c-state">
-    <a href="https://www.w3.org/standards/types#reports">Draft Community Group Report</a>
-    <time class="dt-published" datetime="2024-07-25">January 2025</time>
-  </p>
-  <dl>
-
-    <dt>Latest published version:</dt>
-    <dd>
-      <a href="https://w3c-cg.github.io/cndid/Formal_analysis_report">https://w3c-cg.github.io/cndid/Formal_analysis_report</a>
-    </dd>
-
-
-
-
-
-    <dt>Editor:</dt>
-    <dd class="editor p-author h-card vcard">
-      <span class="p-name fn">Ziyu Mao</span> (<a class="p-org org h-org">Zhejiang University, Ant Group</a>)
-    </dd>
-    <dd class="editor p-author h-card vcard">
-      <span class="p-name fn">Lin Huang</span> (<a class="p-org org h-org">Ant Group</a>)
-    </dd>
-    <dd class="editor p-author h-card vcard">
-      <span class="p-name fn">Jingyi Wang</span> (<a class="p-org org h-org">Zhejiang University</a>)
-    </dd>
-    <dd class="editor p-author h-card vcard">
-      <span class="p-name fn">Jingling Xue</span> (<a class="p-org org h-org">UNSW Sydney, Ant Group</a>)
-    </dd>
+<body>
   
-    </dd>
 
+<section id="abstract">
+  <p>Decentralized Identity (DID) enhances authentication and security by shifting control from centralized entities to
+    individuals, ensuring
+    greater privacy and autonomy. This model relies on two principles: (1) users independently manage their cryptographic
+    keys, eliminating third-party reliance, and (2) secure verification occurs through <i>verifiable credentials</i> (VCs)
+    [<cite><a class="bibref" href="#bib-oid4vc">OID4VC</a></cite>] issued by trusted issuers and <i>verifiable
+      presentations</i> (VPs) [<cite><a class="bibref" href="#bib-oid4vp">OID4VP</a></cite>] enabling selective disclosure
+    (of claims in VCs). A DID document serves as a unique identifier, functioning without centralized registries and
+    promoting user-centric identity management.</p></section>
 
-
-
-  </dl>
-
-  <p class="copyright">
-    <a href="https://www.w3.org/policies/#copyright">Copyright</a>
-    ©
-    2024
-
-    the Contributors to the IIFAA Decentralized Trusted Authentication Technical Specification - Part 1: General Requirements
-    Specification, published by <a href="https://www.iifaa.org.cn/index">IIFAA</a> and
-    <a href="https://www.w3.org/groups/cg/cndid">Chinese DID &amp; VC Community Group</a> under the
-    <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
-    A human-readable
-    <a href="https://www.w3.org/community/about/agreements/cla-deed/">summary</a>
-    is available.
-
-  </p>
-
-  <hr title="Separator for header">
-  
-  <!-- <div class="logo-container">
-    <a class="logo" href="https://www.iifaa.org.cn/index"><img class="logo-1" alt="IIFAA" height="88"
-        src="img/iifaa-logo.jpg" width="auto"></a>
-    <a class="logo" href="https://www.w3.org/community"><img class="logo-2" alt="W3C Community Group" height="68"
-        src="img/cgbg-logo.svg" width="auto" text-align: "right;></a>
-  </div> -->
-  </div>
-
-  <section id="abstract" class="introductory">
-    <h2>Abstract</h2>
-In this report, we present the automated formal analysis of a mobile-based Decentralized Identity (DID) protocol following the IIFAA DID standard. Embedded in the widely used super app Alipay, this protocol has issued millions of DIDs. Despite the IIFAA standard's similarity to other informal DID standards written in native languages, we formalized it within the super app environment and defined five critical security goals based on relevant standards and implementation documents. Using the state-of-the-art protocol verifier Tamarin, we assessed IIFAA DID under a realistic, super-app-specific threat model. Our analysis and findings provide key recommendations and insights for strengthening DID security.
-<!-- and our open-source symbolic model supports future formal analyses of similar systems.   -->
-  </section>
-  <section id="sotd" class="introductory">
-    <h2>Status of This Document</h2>
-    <p>
-    </p>
-
-   <nav id="toc">
-  <h2 class="introductory" id="table-of-contents">Table of Contents</h2>
-  <ol class="toc">
-    <li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a></li>
-    
-    <li class="tocline"><a class="tocxref" href="#background"><bdi class="secno">2. </bdi>Background</a>
-      <ol class="toc">
-        <li class="tocline"><a class="tocxref" href="#decentralized-identities"><bdi class="secno">2.1 </bdi>Decentralized Identities</a></li>
-        <li class="tocline"><a class="tocxref" href="#super-apps"><bdi class="secno">2.2 </bdi>Super Apps</a></li>
-      </ol>
-    </li>
-
-    <li class="tocline"><a class="tocxref" href="#threat-model"><bdi class="secno">3. </bdi>Threat Model</a>
-      <ol class="toc">
-        <li class="tocline"><a class="tocxref" href="#threat-model"><bdi class="secno">3.1 </bdi>Assumptions.</a></li>
-      </ol>
-    </li>
-
-    <li class="tocline"><a class="tocxref" href="#formal-model"><bdi class="secno">4. </bdi>Formal Model of DID</a>
-      <ol class="toc">
-        <li class="tocline"><a class="tocxref" href="#protocol-extraction"><bdi class="secno">4.1 </bdi>Protocol Extraction</a></li>
-        <li class="tocline"><a class="tocxref" href="#protocol-modeling"><bdi class="secno">4.2 </bdi>Abstraction and Modeling</a></li>
-      </ol>
-    </li>
-
-    <li class="tocline"><a class="tocxref" href="#security-goals"><bdi class="secno">5. </bdi>Security Goals</a></li>
-
-    <li class="tocline"><a class="tocxref" href="#recommendations"><bdi class="secno">6. </bdi>Recommendations, Lessons and Insights</a>
-      <ol class="toc">
-        <li class="tocline"><a class="tocxref" href="#proof-effort"><bdi class="secno">6.1 </bdi>Proof Effort</a></li>
-        <li class="tocline"><a class="tocxref" href="#security-recommendations"><bdi class="secno">6.2 </bdi>Security Recommendations</a></li>
-        <li class="tocline"><a class="tocxref" href="#lessons-and-insights"><bdi class="secno">6.3 </bdi>Lessons and Insights</a></li>
-      </ol>
-    </li>
-
-    <li class="tocline"><a class="tocxref" href="#conclusion"><bdi class="secno">7. </bdi>Conclusion</a></li>
-  </ol>
-</nav>
-
+<section id="sotd"></section>
 
 <section id="introduction">
-  <div class="header-wrapper">
+
     <h2 id="x1-introduction">
-      <bdi class="secno">1. </bdi>Introduction
+Introduction
     </h2>
     <a class="self-link" href="#introduction" aria-label="Permalink for Section 1."></a>
   </div>
@@ -577,23 +92,25 @@ In this report, we present the automated formal analysis of a mobile-based Decen
 </section>
 
 
+
+
 <section id="background">
-  <div class="header-wrapper">
+
     <h2 id="x2-background">
-      <bdi class="secno">2. </bdi>Background
+     Background
     </h2>
-    <a class="self-link" href="#background" aria-label="Permalink for Section 2."></a>
+
   </div>
 
   <p>We provide an overview of DID systems, then discuss super apps and their integration with DID technologies.</p>
 
   <section id="decentralized-identities">
-    <div class="header-wrapper">
+  
       <h3 id="x2-1-decentralized-identities">
-        <bdi class="secno">2.1 </bdi>Decentralized Identities
+        Decentralized Identities
       </h3>
-      <a class="self-link" href="#decentralized-identities" aria-label="Permalink for Section 2.1"></a>
-    </div>
+      
+ 
 
     <p>
       A <em>DID Document</em> is a key component of decentralized identity, containing <em>claims</em> (attributes), cryptographic keys, authentication protocols, and service endpoints. These elements enable identity verification and secure communication.
@@ -615,9 +132,9 @@ In this report, we present the automated formal analysis of a mobile-based Decen
   </section>
 
   <section id="super-apps">
-    <div class="header-wrapper">
+  
       <h3 id="x2-2-super-apps">
-        <bdi class="secno">2.2 </bdi>Super Apps
+      Super Apps
       </h3>
       <a class="self-link" href="#super-apps" aria-label="Permalink for Section 2.2"></a>
     </div>
@@ -646,9 +163,9 @@ In this report, we present the automated formal analysis of a mobile-based Decen
 
 
 <section id="threat-model">
-  <div class="header-wrapper">
+
     <h2 id="x3-threat-model">
-      <bdi class="secno">3. </bdi>Threat Model
+     Threat Model
     </h2>
     <a class="self-link" href="#threat-model" aria-label="Permalink for Section 3."></a>
   </div>
@@ -667,30 +184,22 @@ In this report, we present the automated formal analysis of a mobile-based Decen
   </p>
 </section>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script>
-  MathJax = {
-    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-    svg: { fontCache: 'global' }
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
 
 
 
 <section id="formal-model">
-  <div class="header-wrapper">
+
     <h2 id="x4-background">
-      <bdi class="secno">4. </bdi>Formal Model of DID
+      Formal Model of DID
     </h2>
-    <a class="self-link" href="#formal-model" aria-label="Permalink for Section 4."></a>
+  
   </div>
 
   <section id="protocol-extraction">
-  <div class="header-wrapper">
+
     <h3 id="x4-1-protocol-extraction">
-      <bdi class="secno">4.1 </bdi>Protocol Extraction
+      Protocol Extraction
     </h3>
     <a class="self-link" href="#protocol-extraction" aria-label="Permalink for Section 4.1"></a>
   </div>
@@ -724,9 +233,9 @@ In this report, we present the automated formal analysis of a mobile-based Decen
   </section>
 
   <section id="protocol-modeling">
-  <div class="header-wrapper">
+
     <h3 id="x4-2-protocol-modeling">
-      <bdi class="secno">4.2 </bdi>Abstraction and Modeling
+      Abstraction and Modeling
     </h3>
     <a class="self-link" href="#protocol-modeling" aria-label="Permalink for Section 4.2"></a>
   </div>
@@ -747,7 +256,7 @@ In this report, we present the automated formal analysis of a mobile-based Decen
 
 <div class="example" id="example-miniprogram-register">
   <div class="marker">
-    <a class="self-link" href="#example-miniprogram-register">Example <bdi>MiniProgram-Register</bdi></a>
+    MiniProgram-Register</a>
   </div>
   <pre class="nohighlight"><code class="language-tamarin">
 rule MiniprogramRegister:
@@ -841,9 +350,9 @@ rule MiniprogramRegister:
 
 
 <section id="security-goals">
-  <div class="header-wrapper">
+
     <h2 id="x5-security-goals">
-      <bdi class="secno">5. </bdi>Security Goals
+      Security Goals
     </h2>
     <a class="self-link" href="#security-goals" aria-label="Permalink for Section 4."></a>
   </div>
@@ -1038,9 +547,9 @@ rule MiniprogramRegister:
 
 
 <section id="recommendations">
-  <div class="header-wrapper">
+
     <h2 id="x6-recommendations-lessons-and-insights">
-      <bdi class="secno">6. </bdi>Recommendations, Lessons and Insights
+      Recommendations, Lessons and Insights
     </h2>
     <a class="self-link" href="#recommendations" aria-label="Permalink for Section 6."></a>
   </div>
@@ -1050,9 +559,9 @@ rule MiniprogramRegister:
   </p>
 
   <section id="proof-effort">
-    <div class="header-wrapper">
+  
       <h3 id="x6-1-proof-effort">
-        <bdi class="secno">6.1 </bdi>Proof Effort
+        Proof Effort
       </h3>
       <a class="self-link" href="#proof-effort" aria-label="Permalink for Section 5.1"></a>
     </div>
@@ -1162,9 +671,9 @@ rule MiniprogramRegister:
 
 
   <section id="security-recommendations">
-  <div class="header-wrapper">
+
     <h3 id="x6-2-security-recommendations">
-      <bdi class="secno">6.2 </bdi>Security Recommendations
+      Security Recommendations
     </h3>
     <a class="self-link" href="#security-recommendations" aria-label="Permalink for Section 6.2"></a>
   </div>
@@ -1227,9 +736,9 @@ rule MiniprogramRegister:
 
 
 <section id="lessons-and-insights">
-  <div class="header-wrapper">
+
     <h3 id="x5-3-lessons-and-insights">
-      <bdi class="secno">6.3 </bdi>Lessons and Insights
+     Lessons and Insights
     </h3>
     <a class="self-link" href="#lessons-and-insights" aria-label="Permalink for Section 6.3"></a>
   </div>
@@ -1274,9 +783,9 @@ rule MiniprogramRegister:
 
 
 <section id="conclusion">
-  <div class="header-wrapper">
+
     <h2 id="x7-conclusion">
-      <bdi class="secno">7. </bdi>Conclusion
+      Conclusion
     </h2>
     <a class="self-link" href="#conclusion" aria-label="Permalink for Section 7."></a>
   </div>
@@ -1296,8 +805,8 @@ rule MiniprogramRegister:
   </p> -->
 </section>
 
-<section id="references" class="appendix"><div class="header-wrapper"><h2 id="f-references"><bdi class="secno">A. </bdi>References</h2><a class="self-link" href="https://www.w3.org/TR/did-1.0/#references" aria-label="Permalink for Appendix F."></a></div>
-  <!-- <section id="normative-references"><div class="header-wrapper"><h3 id="f-1-normative-references"><bdi class="secno">F.1 </bdi>Normative references</h3><a class="self-link" href="https://www.w3.org/TR/did-1.0/#normative-references" aria-label="Permalink for Appendix F.1"></a></div> -->
+<section id="references" class="appendix"><div class="header-wrapper"><h2 id="f-references">References</h2><a class="self-link" href="https://www.w3.org/TR/did-1.0/#references" aria-label="Permalink for Appendix F."></a></div>
+  <!-- <section id="normative-references"><div class="header-wrapper"><h3 id="f-1-normative-references">Normative references</h3><a class="self-link" href="https://www.w3.org/TR/did-1.0/#normative-references" aria-label="Permalink for Appendix F.1"></a></div> -->
     <dl class="bibliography">
     
     <dt id="bib-vcdm">[VCDM]</dt>
@@ -1821,4 +1330,14 @@ function hidePanel(panel) {
   panel.hidden = true;
   panel.classList.remove("docked");
 }
-})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+})()</script><script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+</body></html>
