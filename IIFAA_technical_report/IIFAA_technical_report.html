@@ -82,7 +82,7 @@ Introduction
 <ol>
   <li><strong>Formal Model of DID.</strong> We develop a symbolic model of IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] in Alipay, capturing key super app features under a tailored threat model.</li>
   <li><strong>Formalized Security Goals.</strong> We define five key security goals by extracting specifications from the IIFAA standard and W3C documents.</li>
-  <li><strong>Security Risks, Recommendations, and Insights.</strong> Using <em>Tamarin</em> [<cite><a class="bibref" href="#bib-tamarin">Tamarin</a></cite>], we validate security claims and identify three potential risks. Our findings provide recommendations and insights into strengthening DID security in real-world deployments.</li>
+  <li><strong>Security Risks, Recommendations, and Insights.</strong> Using <em>Tamarin</em>, we validate security claims and identify three potential risks. Our findings provide recommendations and insights into strengthening DID security in real-world deployments.</li>
 </ol>
 
 <!-- <p><strong>Open-Source.</strong>
@@ -279,7 +279,7 @@ rule MiniprogramRegister:
 </p>
 
   <p>
-    User information (e.g., name and age) is stored on the Alipay server and accessed via OAuth 2.0 [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>], specifically the authorization code flow. Upon user consent, Alipay generates an authorization code (<code>AuthCode</code>) for the mini-program, which exchanges it for a short-lived access token to retrieve user data. Following [<cite><a class="bibref" href="#bib-AuthCodeModel">AuthCodeModel</a></cite>], we abstract this process, modeling only the TLS exchange between the mini-program's server and Alipay servers.
+    User information (e.g., name and age) is stored on the Alipay server and accessed via OAuth 2.0 [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>], specifically the authorization code flow. Upon user consent, Alipay generates an authorization code (<code>AuthCode</code>) for the mini-program, which exchanges it for a short-lived access token to retrieve user data. We abstract this process, modeling only the TLS exchange between the mini-program's server and Alipay servers.
   </p>
 
   <p>
@@ -325,13 +325,13 @@ rule MiniprogramRegister:
   <span id="math">\( \langle \cdot \rangle \)</span> and multiset union 
   <span id="math">\( + \)</span>. The associative and commutative properties of 
   <span id="math">\( + \)</span> enable selective disclosure modeling via the subterm relation 
-  <span id="math">\( \sqsubset \)</span> [<cite><a class="bibref" href="#bib-subterm">Cremers2023</a></cite>].
+  <span id="math">\( \sqsubset \)</span> [<cite><a class="bibref" href="#bib-subterm">subterm</a></cite>].
 </p>
 
 
 <p><strong>SD-JWT Data Format.</strong>
   <code>SD-JWT</code> [<cite><a class="bibref" href="#bib-sdjwt">sdjwt</a></cite>] is a composite JSON-encoded JWS structure enabling selective disclosure. 
-  By separating claims during VC issuance (as shown in the "VC Construction" process in Figure 1, 
+  By separating claims during VC issuance (as shown in the "VC Construction" process in Figure 1), 
   its signature proof remains valid even when some claims are selectively removed.
 </p>
 
@@ -537,7 +537,7 @@ rule MiniprogramRegister:
   (<span id="math">\( uid \)</span>) possesses a VC from an earlier timestamp <span id="math">\( t_2 \)</span> (line 2), from which 
   <span id="math">\( \texttt{VP} \)</span> is constructed (line 3). Note that the symbol 
   <span id="math">\( \sqsubset \)</span> denotes the subterm relation 
-  [<cite><a class="bibref" href="#bib-subterm">Cremers2023</a></cite>], representing the subset relationship between 
+  [<cite><a class="bibref" href="#bib-subterm">subterm</a></cite>], representing the subset relationship between 
   <span id="math">\( \texttt{VP} \)</span> and <span id="math">\( \texttt{VC} \)</span>.
 </p>
 
@@ -580,11 +580,11 @@ rule MiniprogramRegister:
 
     <p>
       Following [<cite><a class="bibref" href="#bib-Verify-Exposure">Morio2023</a></cite>, 
-      <cite><a class="bibref" href="#bib-Verifiy-noise">Girol2020</a></cite>], 
+      <cite><a class="bibref" href="#bib-Verify-Noise">Girol2020</a></cite>], 
       we formalize each security goal as 
       <span id="math">\( \tau \Rightarrow C \lor P_1 \lor \dots \lor P_n \)</span>, 
       where <span id="math">\( \tau \)</span> is the trigger event 
-      [<cite><a class="bibref" href="#bib-Verifiy-noise">Girol2020</a></cite>], 
+      [<cite><a class="bibref" href="#bib-Verify-Noise">Girol2020</a></cite>], 
       <span id="math">\( C \)</span> is the intended security property, and 
       <span id="math">\( P_i \)</span> represents the <span id="math">\( i \)</span>-th attack vector violating 
       <span id="math">\( C \)</span>.
@@ -860,11 +860,6 @@ rule MiniprogramRegister:
       <cite>Formal Analysis of SPDM: Security Protocol and Data Model version 1.2</cite>. Cas Cremers; Alexander Dax; Aurora Naska. 32nd USENIX Security Symposium (USENIX Security 23). 2023. Pages: 6611–6628.
     </dd>
 
-    <dt id="bib-authcodemodel">[AUTHCODEMODEL]</dt>
-    <dd>
-      <cite>Privacy-preserving OpenID connect</cite>. Sven Hammann; Ralf Sasse; David Basin. Proceedings of the 15th ACM Asia Conference on Computer and Communications Security. 2020. Pages: 277–289.
-    </dd>
-
     <dt id="bib-oauth">[OAuth2.0]</dt>
     <dd>
       <a href="https://www.rfc-editor.org/info/rfc6749"><cite>The OAuth 2.0 Authorization Framework</cite></a>. Dick Hardt. RFC 6749. RFC Editor. 2012. URL: <a href="https://www.rfc-editor.org/info/rfc6749">https://www.rfc-editor.org/info/rfc6749</a>
@@ -890,7 +885,7 @@ rule MiniprogramRegister:
       <cite>The TAMARIN prover for the symbolic analysis of security protocols</cite>. Simon Meier; Benedikt Schmidt; Cas Cremers; David Basin. Computer Aided Verification: 25th International Conference, CAV 2013. Springer. 2013. Pages: 696–701.
     </dd>
 
-    <dt id="bib-subterm">[Cremers2023]</dt>
+    <dt id="bib-subterm">[subterm]</dt>
     <dd>
       <cite>Subterm-based proof techniques for improving the automation and scope of security protocol analysis</cite>. Cas Cremers; Charlie Jacomme; Philip Lukert. 2023 IEEE 36th Computer Security Foundations Symposium (CSF). IEEE. 2023. Pages: 200–213.
     </dd>
@@ -947,12 +942,12 @@ rule MiniprogramRegister:
       <cite>SSI, from Specifications to Protocol? Formally verify security!</cite>. Christoph H-J Braun; Ross Horne; Tobias Käfer; Sjouke Mauw. Proceedings of the ACM on Web Conference 2024. 2024. Pages: 1620–1631.
     </dd>
 
-    <dt id="bib-verifydidcomm">[Badertscher2024]</dt>
+    <dt id="bib-verifyDIDComm">[Badertscher2024]</dt>
     <dd>
       <cite>What Did Come Out of It? Analysis and Improvements of DIDComm Messaging</cite>. Christian Badertscher; Fabio Banfi; Jesus Diaz. Cryptology ePrint Archive. 2024.
     </dd>
 
-    <dt id="bib-verifyoid4vc">[VerifyOID4VC]</dt>
+    <dt id="bib-verifyOID4VC">[VerifyOID4VC]</dt>
     <dd>
       <a href="http://elib.uni-stuttgart.de/handle/11682/13791"><cite>OpenID for Verifiable Credentials: Formal Security Analysis Using the Web Infrastructure Model</cite></a>. Fabian Hauck. Master's thesis. University of Stuttgart. 2023. URL: <a href="http://elib.uni-stuttgart.de/handle/11682/13791">http://elib.uni-stuttgart.de/handle/11682/13791</a>. DOI: 10.18419/opus-13772.
     </dd>
@@ -1035,12 +1030,12 @@ rule MiniprogramRegister:
     <cite>Security protocols for biometrics-based cardholder authentication in smartcards</cite>. Luciano Rila; Chris J. Mitchell. Applied Cryptography and Network Security: First International Conference, ACNS 2003, Kunming, China, October 16–19, 2003. Springer. 2003. Pages: 254–264.
   </dd>
 
-  <dt id="bib-verify-exposure">[Morio2023]</dt>
+  <dt id="bib-Verify-Exposure">[Morio2023]</dt>
   <dd>
     <cite>Automated security analysis of exposure notification systems</cite>. Kevin Morio; Ilkan Esiyok; Dennis Jackson; Robert Künnemann. 32nd USENIX Security Symposium (USENIX Security 23). 2023. Pages: 6593–6610.
   </dd>
 
-  <dt id="bib-verifiy-noise">[Girol2020]</dt>
+  <dt id="bib-Verify-Noise">[Girol2020]</dt>
   <dd>
     <cite>A spectral analysis of noise: A comprehensive, automated, formal analysis of Diffie-Hellman protocols</cite>. Guillaume Girol; Lucca Hirschi; Ralf Sasse; Dennis Jackson; Cas Cremers; David Basin. 29th USENIX Security Symposium (USENIX Security 20). 2020. Pages: 1857–1874.
   </dd>
@@ -1050,7 +1045,7 @@ rule MiniprogramRegister:
     <cite>Towards a better super-app architecture from a browser security perspective</cite>. Yue Wang; Yao Yao; Shangcheng Shi; Weiting Chen; Lin Huang. Proceedings of the 2023 ACM Workshop on Secure and Trustworthy Superapps. 2023. Pages: 23–28.
   </dd> -->
 
-  <dt id="bib-openapisignature">[OpenAPI]</dt>
+  <dt id="bib-OpenAPISignature">[OpenAPI]</dt>
   <dd>
     <a href="https://opendocs.alipay.com/common/02kf5p"><cite>OpenAPI Signature Methods</cite></a>. Alipay. URL: <a href="https://opendocs.alipay.com/common/02kf5p">https://opendocs.alipay.com/common/02kf5p</a>
   </dd>
