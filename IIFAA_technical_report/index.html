@@ -307,29 +307,29 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     }
   ],
   "group": "cndid",
-  "publishISODate": "2025-11-05T00:00:00.000Z",
-  "generatedSubtitle": "Final Community Group Report 05 November 2025"
+  "publishISODate": "2025-11-07T00:00:00.000Z",
+  "generatedSubtitle": "Final Community Group Report 07 November 2025"
 }</script>
-<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/cg-final"></head><body data-new-gr-c-s-check-loaded="14.1260.0" data-gr-ext-installed="" class="h-entry informative"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/cg-final"></head><body data-new-gr-c-s-check-loaded="14.1261.0" data-gr-ext-installed="" class="h-entry informative"><div class="head">
     
     <h1 id="title" class="title">A Formal Security Analysis of IIFAA DID in Super Apps</h1> 
     <p id="w3c-state">
       <a href="https://www.w3.org/standards/types#reports">Final Community Group Report</a>
-      <time class="dt-published" datetime="2025-11-05">05 November 2025</time>
+      <time class="dt-published" datetime="2025-11-07">07 November 2025</time>
     </p>
     <dl>
       <dt>This version:</dt><dd>
-              <a class="u-url" href="https://www.w3.org/community/reports/cndid/CG-FINAL-iifaa-did-20251105/">https://www.w3.org/community/reports/cndid/CG-FINAL-iifaa-did-20251105/</a>
+              <a class="u-url" href="https://www.w3.org/community/reports/cndid/CG-FINAL-iifaa-did-20251107/">https://www.w3.org/community/reports/cndid/CG-FINAL-iifaa-did-20251107/</a>
             </dd>
       <dt>Latest published version:</dt><dd>
-              <a href="https://w3c-cg.github.io/cndid/IIFAA_technical_report/IIFAA_technical_report.html">https://w3c-cg.github.io/cndid/IIFAA_technical_report/IIFAA_technical_report.html</a>
+              <a href="https://www.w3.org/community/reports/cndid/iifaa-did/">https://www.w3.org/community/reports/cndid/iifaa-did/</a>
             </dd>
       
       
       
       
       
-          <dt>Editor:</dt>
+       <dt>Editor:</dt>
     <dd class="editor p-author h-card vcard">
       <span class="p-name fn">Ziyu Mao</span> (<a class="p-org org h-org">Zhejiang University, Ant Group</a>)
     </dd>
@@ -445,7 +445,7 @@ Introduction
   </p>
 
   <p><strong>Related Work.</strong>
-  Recent studies have applied formal methods to analyze the security of DID-related protocols. Hauck [<cite><a class="bibref respec-offending-element" href="#bib-verifyOID4VC" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document">verifyOID4VC</a></cite>] examined OpenID for VC Issuance [<cite><a class="bibref" href="#bib-oid4vc">OID4VC</a></cite>] and VPs [<cite><a class="bibref" href="#bib-oid4vp">OID4VP</a></cite>] using the Web Infrastructure Model (WIM). However, this pen-and-paper analysis relies on expertise, lacks automation, and covers limited aspects of communication protocols in DID applications. Badertscher et al. [<cite><a class="bibref respec-offending-element" href="#bib-verifyDIDComm" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-0">Badertscher2024</a></cite>] conducted the first formal analysis of DIDComm's cryptographic foundations, confirming its anonymity and authenticity while proposing protocol improvements. Braun et al. [<cite><a class="bibref" href="#bib-verifyssi">verifySSI</a></cite>] analyzed a self-constructed protocol based on SSI specifications. While comprehensive in modeling a DID application's workflow, it remains abstract, relying on a limited Dolev-Yao threat model [<cite><a class="bibref" href="#bib-delvoyao">DolevYao</a></cite>] and overlooking the varied ways VPs can be derived from VCs, potentially missing real-world attack vectors.
+  Recent studies have applied formal methods to analyze the security of DID-related protocols. Hauck [<cite><a class="bibref" href="#bib-verifyOID4VC">verifyOID4VC</a></cite>] examined OpenID for VC Issuance [<cite><a class="bibref" href="#bib-oid4vc">OID4VC</a></cite>] and VPs [<cite><a class="bibref" href="#bib-oid4vp">OID4VP</a></cite>] using the Web Infrastructure Model (WIM). However, this pen-and-paper analysis relies on expertise, lacks automation, and covers limited aspects of communication protocols in DID applications. Badertscher et al. [<cite><a class="bibref" href="#bib-verifyDIDComm">Badertscher2024</a></cite>] conducted the first formal analysis of DIDComm's cryptographic foundations, confirming its anonymity and authenticity while proposing protocol improvements. Braun et al. [<cite><a class="bibref" href="#bib-verifyssi">verifySSI</a></cite>] analyzed a self-constructed protocol based on SSI specifications. While comprehensive in modeling a DID application's workflow, it remains abstract, relying on a limited Dolev-Yao threat model [<cite><a class="bibref" href="#bib-delvoyao">DolevYao</a></cite>] and overlooking the varied ways VPs can be derived from VCs, potentially missing real-world attack vectors.
   </p>
 
   <p><strong>Challenges.</strong>
@@ -464,7 +464,7 @@ Introduction
 <ol>
   <li><strong>Formal Model of DID.</strong> We develop a symbolic model of IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] in Alipay, capturing key super app features under a tailored threat model.</li>
   <li><strong>Formalized Security Goals.</strong> We define five key security goals by extracting specifications from the IIFAA standard and W3C documents.</li>
-  <li><strong>Security Risks, Recommendations, and Insights.</strong> Using <em>Tamarin</em> [<cite><a class="bibref" href="#bib-tamarin">Tamarin</a></cite>], we validate security claims and identify three potential risks. Our findings provide recommendations and insights into strengthening DID security in real-world deployments.</li>
+  <li><strong>Security Risks, Recommendations, and Insights.</strong> Using <em>Tamarin</em>, we validate security claims and identify three potential risks. Our findings provide recommendations and insights into strengthening DID security in real-world deployments.</li>
 </ol>
 
 
@@ -528,7 +528,7 @@ Introduction
       <li><strong>Alipay Client</strong> manages mini-program lifecycle, integrity, authentication, and permissions, providing APIs for interaction with Alipay's lower-layer services.</li>
       <li><strong>Alipay Server</strong> handles user management, API interactions, and service implementation for the Alipay client.</li>
       <li><strong>Mini-Program Client</strong>, developed using web technologies, interacts with the Alipay client via JSAPI [<cite><a class="bibref" href="#bib-alipayjsapi">AlipayJSAPI</a></cite>] and communicates with its server over TLS.</li>
-      <li><strong>Mini-Program Server</strong>, maintained by its developer, processes business logic and data while adhering to Alipay's security standards. It communicates with the Alipay server via OpenAPI [<cite><a class="bibref respec-offending-element" href="#bib-OpenAPISignature" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-1">OpenAPI</a></cite>], enforcing mutual message signing for authentication and data integrity.</li>
+      <li><strong>Mini-Program Server</strong>, maintained by its developer, processes business logic and data while adhering to Alipay's security standards. It communicates with the Alipay server via OpenAPI [<cite><a class="bibref" href="#bib-OpenAPISignature">OpenAPI</a></cite>], enforcing mutual message signing for authentication and data integrity.</li>
     </ol>
 
     <p>
@@ -560,7 +560,7 @@ Introduction
   </ol>
 
   <p><strong>Assumptions.</strong><br>
-    IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] is a high-level protocol relying on TLS and OAuth [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>]. Following [<cite><a class="bibref respec-offending-element" href="#bib-SOAP" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-2">SOAP</a></cite>], we assume such protocols are secure, and adversaries are constrained by cryptographic primitives. In addition, TLS sessions and the super app server remain uncompromised.
+    IIFAA DID [<cite><a class="bibref" href="#bib-iifaadid">IIFAADID</a></cite>] is a high-level protocol relying on TLS and OAuth [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>]. Following [<cite><a class="bibref" href="#bib-SOAP">SOAP</a></cite>], we assume such protocols are secure, and adversaries are constrained by cryptographic primitives. In addition, TLS sessions and the super app server remain uncompromised.
   </p>
 </section>
 
@@ -656,7 +656,7 @@ rule MiniprogramRegister:
 </p>
 
   <p>
-    User information (e.g., name and age) is stored on the Alipay server and accessed via OAuth 2.0 [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>], specifically the authorization code flow. Upon user consent, Alipay generates an authorization code (<code>AuthCode</code>) for the mini-program, which exchanges it for a short-lived access token to retrieve user data. Following [<cite><a class="bibref respec-offending-element" href="#bib-AuthCodeModel" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-3">AuthCodeModel</a></cite>], we abstract this process, modeling only the TLS exchange between the mini-program's server and Alipay servers.
+    User information (e.g., name and age) is stored on the Alipay server and accessed via OAuth 2.0 [<cite><a class="bibref" href="#bib-oauth">OAuth2.0</a></cite>], specifically the authorization code flow. Upon user consent, Alipay generates an authorization code (<code>AuthCode</code>) for the mini-program, which exchanges it for a short-lived access token to retrieve user data. We abstract this process, modeling only the TLS exchange between the mini-program's server and Alipay servers.
   </p>
 
   <p>
@@ -702,13 +702,13 @@ rule MiniprogramRegister:
   <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="20" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.389ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 1056 1000" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.566ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="27E8" xlink:href="#MJX-TEX-N-27E8"></use></g><g data-mml-node="mo" transform="translate(389,0)"><use data-c="22C5" xlink:href="#MJX-TEX-N-22C5"></use></g><g data-mml-node="mo" transform="translate(667,0)"><use data-c="27E9" xlink:href="#MJX-TEX-N-27E9"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo fence="false" stretchy="false">⟨</mo><mo>⋅</mo><mo fence="false" stretchy="false">⟩</mo></math></mjx-assistive-mml></mjx-container></span> and multiset union 
   <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="21" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.505ex" role="img" focusable="false" viewBox="0 -583 778 665" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.186ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2B" xlink:href="#MJX-TEX-N-2B"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>+</mo></math></mjx-assistive-mml></mjx-container></span>. The associative and commutative properties of 
   <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="22" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.505ex" role="img" focusable="false" viewBox="0 -583 778 665" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.186ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2B" xlink:href="#MJX-TEX-N-2B"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>+</mo></math></mjx-assistive-mml></mjx-container></span> enable selective disclosure modeling via the subterm relation 
-  <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="23" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.312ex" role="img" focusable="false" viewBox="0 -539 778 580" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.093ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="228F" xlink:href="#MJX-TEX-N-228F"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>⊏</mo></math></mjx-assistive-mml></mjx-container></span> [<cite><a class="bibref" href="#bib-subterm">Cremers2023</a></cite>].
+  <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="23" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.312ex" role="img" focusable="false" viewBox="0 -539 778 580" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.093ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="228F" xlink:href="#MJX-TEX-N-228F"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>⊏</mo></math></mjx-assistive-mml></mjx-container></span> [<cite><a class="bibref" href="#bib-subterm">subterm</a></cite>].
 </p>
 
 
 <p><strong>SD-JWT Data Format.</strong>
   <code>SD-JWT</code> [<cite><a class="bibref" href="#bib-sdjwt">sdjwt</a></cite>] is a composite JSON-encoded JWS structure enabling selective disclosure. 
-  By separating claims during VC issuance (as shown in the "VC Construction" process in Figure 1, 
+  By separating claims during VC issuance (as shown in the "VC Construction" process in Figure 1), 
   its signature proof remains valid even when some claims are selectively removed.
 </p>
 
@@ -870,7 +870,7 @@ rule MiniprogramRegister:
   (<span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="44" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.251ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 1437 705" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D462" xlink:href="#MJX-TEX-I-1D462"></use></g><g data-mml-node="mi" transform="translate(572,0)"><use data-c="1D456" xlink:href="#MJX-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(917,0)"><use data-c="1D451" xlink:href="#MJX-TEX-I-1D451"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>u</mi><mi>i</mi><mi>d</mi></math></mjx-assistive-mml></mjx-container></span>) possesses a VC from an earlier timestamp <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="45" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.804ex" height="1.756ex" role="img" focusable="false" viewBox="0 -626 797.6 776" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.339ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D461" xlink:href="#MJX-TEX-I-1D461"></use></g><g data-mml-node="mn" transform="translate(394,-150) scale(0.707)"><use data-c="32" xlink:href="#MJX-TEX-N-32"></use></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>t</mi><mn>2</mn></msub></math></mjx-assistive-mml></mjx-container></span> (line 2), from which 
   <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="46" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.376ex" height="1.398ex" role="img" focusable="false" viewBox="0 -611 1050 618" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.016ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtext"><use data-c="1D685" xlink:href="#MJX-TEX-M-1D685"></use><use data-c="1D67F" xlink:href="#MJX-TEX-M-1D67F" transform="translate(525,0)"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtext mathvariant="monospace">VP</mtext></math></mjx-assistive-mml></mjx-container></span> is constructed (line 3). Note that the symbol 
   <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="47" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.312ex" role="img" focusable="false" viewBox="0 -539 778 580" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.093ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="228F" xlink:href="#MJX-TEX-N-228F"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>⊏</mo></math></mjx-assistive-mml></mjx-container></span> denotes the subterm relation 
-  [<cite><a class="bibref" href="#bib-subterm">Cremers2023</a></cite>], representing the subset relationship between 
+  [<cite><a class="bibref" href="#bib-subterm">subterm</a></cite>], representing the subset relationship between 
   <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="48" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.376ex" height="1.398ex" role="img" focusable="false" viewBox="0 -611 1050 618" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.016ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtext"><use data-c="1D685" xlink:href="#MJX-TEX-M-1D685"></use><use data-c="1D67F" xlink:href="#MJX-TEX-M-1D67F" transform="translate(525,0)"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtext mathvariant="monospace">VP</mtext></math></mjx-assistive-mml></mjx-container></span> and <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="49" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.376ex" height="1.432ex" role="img" focusable="false" viewBox="0 -622 1050 633" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mtext"><use data-c="1D685" xlink:href="#MJX-TEX-M-1D685"></use><use data-c="1D672" xlink:href="#MJX-TEX-M-1D672" transform="translate(525,0)"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mtext mathvariant="monospace">VC</mtext></math></mjx-assistive-mml></mjx-container></span>.
 </p>
 
@@ -912,12 +912,12 @@ rule MiniprogramRegister:
     </p>
 
     <p>
-      Following [<cite><a class="bibref respec-offending-element" href="#bib-Verify-Exposure" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-4">Morio2023</a></cite>, 
-      <cite><a class="bibref respec-offending-element" href="#bib-Verifiy-noise" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-5">Girol2020</a></cite>], 
+      Following [<cite><a class="bibref" href="#bib-Verify-Exposure">Morio2023</a></cite>, 
+      <cite><a class="bibref" href="#bib-Verify-Noise">Girol2020</a></cite>], 
       we formalize each security goal as 
       <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="50" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="21.644ex" height="1.952ex" role="img" focusable="false" viewBox="0 -705 9566.7 862.8" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.357ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D70F" xlink:href="#MJX-TEX-I-1D70F"></use></g><g data-mml-node="mo" transform="translate(794.8,0)"><use data-c="21D2" xlink:href="#MJX-TEX-N-21D2"></use></g><g data-mml-node="mi" transform="translate(2072.6,0)"><use data-c="1D436" xlink:href="#MJX-TEX-I-1D436"></use></g><g data-mml-node="mo" transform="translate(3054.8,0)"><use data-c="2228" xlink:href="#MJX-TEX-N-2228"></use></g><g data-mml-node="msub" transform="translate(3944,0)"><g data-mml-node="mi"><use data-c="1D443" xlink:href="#MJX-TEX-I-1D443"></use></g><g data-mml-node="mn" transform="translate(675,-150) scale(0.707)"><use data-c="31" xlink:href="#MJX-TEX-N-31"></use></g></g><g data-mml-node="mo" transform="translate(5244.8,0)"><use data-c="2228" xlink:href="#MJX-TEX-N-2228"></use></g><g data-mml-node="mo" transform="translate(6134,0)"><use data-c="22EF" xlink:href="#MJX-TEX-N-22EF"></use></g><g data-mml-node="mo" transform="translate(7528.2,0)"><use data-c="2228" xlink:href="#MJX-TEX-N-2228"></use></g><g data-mml-node="msub" transform="translate(8417.4,0)"><g data-mml-node="mi"><use data-c="1D443" xlink:href="#MJX-TEX-I-1D443"></use></g><g data-mml-node="mi" transform="translate(675,-150) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-TEX-I-1D45B"></use></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>τ</mi><mo stretchy="false">⇒</mo><mi>C</mi><mo>∨</mo><msub><mi>P</mi><mn>1</mn></msub><mo>∨</mo><mo>⋯</mo><mo>∨</mo><msub><mi>P</mi><mi>n</mi></msub></math></mjx-assistive-mml></mjx-container></span>, 
       where <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="51" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.17ex" height="1.005ex" role="img" focusable="false" viewBox="0 -431 517 444" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.029ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D70F" xlink:href="#MJX-TEX-I-1D70F"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>τ</mi></math></mjx-assistive-mml></mjx-container></span> is the trigger event 
-      [<cite><a class="bibref respec-offending-element" href="#bib-Verifiy-noise" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-6">Girol2020</a></cite>], 
+      [<cite><a class="bibref" href="#bib-Verify-Noise">Girol2020</a></cite>], 
       <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="52" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.719ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 760 727" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-TEX-I-1D436"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi></math></mjx-assistive-mml></mjx-container></span> is the intended security property, and 
       <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="53" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.192ex" height="1.902ex" role="img" focusable="false" viewBox="0 -683 969 840.8" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.357ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D443" xlink:href="#MJX-TEX-I-1D443"></use></g><g data-mml-node="mi" transform="translate(675,-150) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-TEX-I-1D456"></use></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>P</mi><mi>i</mi></msub></math></mjx-assistive-mml></mjx-container></span> represents the <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="54" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-TEX-I-1D456"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math></mjx-assistive-mml></mjx-container></span>-th attack vector violating 
       <span id="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="SVG" tabindex="0" ctxtmenu_counter="55" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.719ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 760 727" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-TEX-I-1D436"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi></math></mjx-assistive-mml></mjx-container></span>.
@@ -1077,8 +1077,8 @@ rule MiniprogramRegister:
 
   <p>
     In practice, the lifecycle of protocols like DID—from design to deployment—evolves rapidly, demanding a verification approach distinct from most academic security studies 
-    [<cite><a class="bibref respec-offending-element" href="#bib-SPDM" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-7">SPDM</a></cite>, 
-     <cite><a class="bibref respec-offending-element" href="#bib-EME" title="Broken local reference found in document." id="respec-offender-broken-local-reference-found-in-document-8">EME</a></cite>, 
+    [<cite><a class="bibref" href="#bib-spdm">SPDM</a></cite>, 
+     <cite><a class="bibref" href="#bib-eme">EME</a></cite>, 
      <cite><a class="bibref" href="#bib-5gakaverif">5GAKA</a></cite>, 
      <cite><a class="bibref" href="#bib-tlsverif">TLS1.3</a></cite>]. 
     Existing research emphasizes low-level details (e.g., handshake mechanisms), resulting in complex models with limited scalability. 
@@ -1147,7 +1147,7 @@ rule MiniprogramRegister:
       <a href="https://github.com/w3c-cg/threat-modeling/blob/main/models/decentralized-identities.md"><cite>Decentralized Identities Threat Model</cite></a>. Threat Modeling Community Group (TMCG). Accessed: 2024-09-14. URL: <a href="https://github.com/w3c-cg/threat-modeling/blob/main/models/decentralized-identities.md">https://github.com/w3c-cg/threat-modeling/blob/main/models/decentralized-identities.md</a>
     </dd>
 
-    <dt id="bib-soap">[SOAP]</dt>
+    <dt id="bib-SOAP">[SOAP]</dt>
     <dd>
       <a href="https://www.usenix.org/conference/usenixsecurity24/presentation/linker"><cite>SOAP: A Social Authentication Protocol</cite></a>. Felix Linker; David Basin. 33rd USENIX Security Symposium (USENIX Security 24). USENIX Association. 2024. Pages: 3223–3240. URL: <a href="https://www.usenix.org/conference/usenixsecurity24/presentation/linker">https://www.usenix.org/conference/usenixsecurity24/presentation/linker</a>
     </dd>
@@ -1175,11 +1175,6 @@ rule MiniprogramRegister:
       <cite>Formal Analysis of SPDM: Security Protocol and Data Model version 1.2</cite>. Cas Cremers; Alexander Dax; Aurora Naska. 32nd USENIX Security Symposium (USENIX Security 23). 2023. Pages: 6611–6628.
     </dd>
 
-    <dt id="bib-authcodemodel">[AUTHCODEMODEL]</dt>
-    <dd>
-      <cite>Privacy-preserving OpenID connect</cite>. Sven Hammann; Ralf Sasse; David Basin. Proceedings of the 15th ACM Asia Conference on Computer and Communications Security. 2020. Pages: 277–289.
-    </dd>
-
     <dt id="bib-oauth">[OAuth2.0]</dt>
     <dd>
       <a href="https://www.rfc-editor.org/info/rfc6749"><cite>The OAuth 2.0 Authorization Framework</cite></a>. Dick Hardt. RFC 6749. RFC Editor. 2012. URL: <a href="https://www.rfc-editor.org/info/rfc6749">https://www.rfc-editor.org/info/rfc6749</a>
@@ -1199,7 +1194,7 @@ rule MiniprogramRegister:
       <cite>The TAMARIN prover for the symbolic analysis of security protocols</cite>. Simon Meier; Benedikt Schmidt; Cas Cremers; David Basin. Computer Aided Verification: 25th International Conference, CAV 2013. Springer. 2013. Pages: 696–701.
     </dd>
 
-    <dt id="bib-subterm">[Cremers2023]</dt>
+    <dt id="bib-subterm">[subterm]</dt>
     <dd>
       <cite>Subterm-based proof techniques for improving the automation and scope of security protocol analysis</cite>. Cas Cremers; Charlie Jacomme; Philip Lukert. 2023 IEEE 36th Computer Security Foundations Symposium (CSF). IEEE. 2023. Pages: 200–213.
     </dd>
@@ -1253,12 +1248,12 @@ rule MiniprogramRegister:
       <cite>SSI, from Specifications to Protocol? Formally verify security!</cite>. Christoph H-J Braun; Ross Horne; Tobias Käfer; Sjouke Mauw. Proceedings of the ACM on Web Conference 2024. 2024. Pages: 1620–1631.
     </dd>
 
-    <dt id="bib-verifydidcomm">[Badertscher2024]</dt>
+    <dt id="bib-verifyDIDComm">[Badertscher2024]</dt>
     <dd>
       <cite>What Did Come Out of It? Analysis and Improvements of DIDComm Messaging</cite>. Christian Badertscher; Fabio Banfi; Jesus Diaz. Cryptology ePrint Archive. 2024.
     </dd>
 
-    <dt id="bib-verifyoid4vc">[VerifyOID4VC]</dt>
+    <dt id="bib-verifyOID4VC">[VerifyOID4VC]</dt>
     <dd>
       <a href="http://elib.uni-stuttgart.de/handle/11682/13791"><cite>OpenID for Verifiable Credentials: Formal Security Analysis Using the Web Infrastructure Model</cite></a>. Fabian Hauck. Master's thesis. University of Stuttgart. 2023. URL: <a href="http://elib.uni-stuttgart.de/handle/11682/13791">http://elib.uni-stuttgart.de/handle/11682/13791</a>. DOI: 10.18419/opus-13772.
     </dd>
@@ -1329,19 +1324,19 @@ rule MiniprogramRegister:
     <cite>Security protocols for biometrics-based cardholder authentication in smartcards</cite>. Luciano Rila; Chris J. Mitchell. Applied Cryptography and Network Security: First International Conference, ACNS 2003, Kunming, China, October 16–19, 2003. Springer. 2003. Pages: 254–264.
   </dd>
 
-  <dt id="bib-verify-exposure">[Morio2023]</dt>
+  <dt id="bib-Verify-Exposure">[Morio2023]</dt>
   <dd>
     <cite>Automated security analysis of exposure notification systems</cite>. Kevin Morio; Ilkan Esiyok; Dennis Jackson; Robert Künnemann. 32nd USENIX Security Symposium (USENIX Security 23). 2023. Pages: 6593–6610.
   </dd>
 
-  <dt id="bib-verifiy-noise">[Girol2020]</dt>
+  <dt id="bib-Verify-Noise">[Girol2020]</dt>
   <dd>
     <cite>A spectral analysis of noise: A comprehensive, automated, formal analysis of Diffie-Hellman protocols</cite>. Guillaume Girol; Lucca Hirschi; Ralf Sasse; Dennis Jackson; Cas Cremers; David Basin. 29th USENIX Security Symposium (USENIX Security 20). 2020. Pages: 1857–1874.
   </dd>
 
   
 
-  <dt id="bib-openapisignature">[OpenAPI]</dt>
+  <dt id="bib-OpenAPISignature">[OpenAPI]</dt>
   <dd>
     <a href="https://opendocs.alipay.com/common/02kf5p"><cite>OpenAPI Signature Methods</cite></a>. Alipay. URL: <a href="https://opendocs.alipay.com/common/02kf5p">https://opendocs.alipay.com/common/02kf5p</a>
   </dd>
